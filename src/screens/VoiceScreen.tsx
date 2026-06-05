@@ -1,18 +1,21 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { Audio } from 'expo-av';
+import * as FileSystem from 'expo-file-system/legacy';
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from '../components/Button';
 import { Screen } from '../components/Screen';
+import { StatusBanner } from '../components/StatusBanner';
 import { useAuth } from '../context/AuthContext';
 import { useFarm } from '../context/FarmContext';
-import { askWheaty, saveRecord } from '../services/api';
-import { HistoryRecord, RootStackParamList } from '../types';
+import { askWheaty, buildAdviceRecord, saveRecord } from '../services/api';
+import { RootStackParamList } from '../types';
 import { colors } from '../utils/theme';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
+const isProductionApp = process.env.EXPO_PUBLIC_APP_ENV === 'production';
 
 export function VoiceScreen() {
   const navigation = useNavigation<Nav>();
@@ -20,44 +23,60 @@ export function VoiceScreen() {
   const { farmProfile } = useFarm();
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
   const [audioUri, setAudioUri] = useState<string>();
-  const [transcript, setTranscript] = useState('My wheat crop needs fertilizer advice.');
+  const [audioBase64, setAudioBase64] = useState<string>();
+  const [transcript, setTranscript] = useState(isProductionApp ? '' : 'My wheat crop needs fertilizer advice.');
   const [loading, setLoading] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
 
   async function startRecording() {
     const permission = await Audio.requestPermissionsAsync();
-    if (!permission.granted) return;
+    if (!permission.granted) {
+      setNotice('Microphone permission is required for voice questions.');
+      return;
+    }
 
-    await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
-    const next = new Audio.Recording();
-    await next.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-    await next.startAsync();
-    setRecording(next);
+    try {
+      setNotice(null);
+      await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
+      const next = new Audio.Recording();
+      await next.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
+      await next.startAsync();
+      setRecording(next);
+    } catch {
+      setNotice('Recording could not start on this device.');
+    }
   }
 
   async function stopRecording() {
     if (!recording) return;
     await recording.stopAndUnloadAsync();
-    setAudioUri(recording.getURI() ?? undefined);
+    const uri = recording.getURI() ?? undefined;
+    setAudioUri(uri);
+    if (uri) {
+      const base64 = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
+      setAudioBase64(base64);
+    }
     setRecording(null);
   }
 
   async function submitVoice() {
     if (!user || !transcript.trim()) return;
     setLoading(true);
+    setNotice(null);
     try {
-      const result = await askWheaty({ text: transcript.trim(), audioUri, userId: user.userId, farmProfile });
-      const response = `${result.response}\n\n${result.actionItems.map((item) => `- ${item}`).join('\n')}`;
-      const record: HistoryRecord = {
-        id: `voice-${Date.now()}`,
+      const result = await askWheaty({
+        text: transcript.trim(),
+        audioUri,
+        audioBase64,
+        audioMimeType: 'audio/m4a',
         userId: user.userId,
-        type: result.intent === 'FARM_PLANNING' ? 'plan' : 'conversation',
-        input: transcript.trim(),
-        response,
-        intent: result.intent,
-        timestamp: new Date().toISOString(),
-      };
+        farmProfile,
+      });
+      const record = buildAdviceRecord(user.userId, transcript.trim(), result);
       await saveRecord(record);
       navigation.navigate('Results', { title: 'Voice Advice', record });
+    } catch {
+      setNotice('Voice advice failed. Check the backend connection or edit the transcript and retry.');
     } finally {
       setLoading(false);
     }
@@ -67,6 +86,8 @@ export function VoiceScreen() {
     <Screen>
       <Button label="Back" icon="chevron-back" variant="ghost" onPress={() => navigation.goBack()} style={styles.back} />
       <Text style={styles.title}>Voice question</Text>
+      <Text style={styles.subtitle}>Record Urdu or English, then confirm the transcript before sending it through intent routing.</Text>
+      {notice ? <StatusBanner tone="warning" icon="alert-circle" text={notice} /> : null}
       <View style={styles.recorder}>
         <Text style={styles.status}>{recording ? 'Recording...' : audioUri ? 'Recording ready' : 'Tap mic to record'}</Text>
         <Button
@@ -96,6 +117,11 @@ const styles = StyleSheet.create({
     color: colors.ink,
     fontSize: 26,
     fontWeight: '900',
+  },
+  subtitle: {
+    color: colors.muted,
+    fontSize: 14,
+    lineHeight: 20,
   },
   recorder: {
     borderWidth: 1,

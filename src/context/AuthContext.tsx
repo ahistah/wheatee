@@ -1,13 +1,15 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react';
 
 import { Language, User } from '../types';
+import { authenticateUser, refreshFirebaseUser } from '../services/auth';
 import { readJson, removeItem, writeJson } from '../utils/storage';
 
 type AuthContextValue = {
   user: User | null;
   loading: boolean;
-  signIn: (name: string, phoneOrEmail: string, language: Language) => Promise<void>;
+  signIn: (name: string, phoneOrEmail: string, password: string, language: Language) => Promise<void>;
   signOut: () => Promise<void>;
+  refreshSession: () => Promise<User | null>;
 };
 
 const AUTH_KEY = 'wheaty.user';
@@ -20,6 +22,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     readJson<User | null>(AUTH_KEY, null)
       .then(setUser)
+      .catch(() => setUser(null))
       .finally(() => setLoading(false));
   }, []);
 
@@ -27,19 +30,21 @@ export function AuthProvider({ children }: PropsWithChildren) {
     () => ({
       user,
       loading,
-      signIn: async (name, phoneOrEmail, language) => {
-        const nextUser: User = {
-          userId: `farmer-${Date.now()}`,
-          name: name.trim() || 'Wheat Farmer',
-          phoneOrEmail: phoneOrEmail.trim() || 'demo@wheaty.app',
-          language,
-        };
+      signIn: async (name, phoneOrEmail, password, language) => {
+        const nextUser = await authenticateUser(name, phoneOrEmail, password, language);
         await writeJson(AUTH_KEY, nextUser);
         setUser(nextUser);
       },
       signOut: async () => {
         await removeItem(AUTH_KEY);
         setUser(null);
+      },
+      refreshSession: async () => {
+        if (!user) return null;
+        const refreshed = await refreshFirebaseUser(user);
+        await writeJson(AUTH_KEY, refreshed);
+        setUser(refreshed);
+        return refreshed;
       },
     }),
     [loading, user],

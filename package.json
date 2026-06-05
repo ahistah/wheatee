@@ -9,8 +9,10 @@
     "@react-navigation/bottom-tabs": "^7.16.2",
     "@react-navigation/native": "^7.2.5",
     "@react-navigation/native-stack": "^7.16.0",
+    "@rnmapbox/maps": "^10.3.1",
     "expo": "~54.0.0",
     "expo-av": "~16.0.8",
+    "expo-file-system": "~19.0.23",
     "expo-font": "~14.0.12",
     "expo-image-picker": "~17.0.11",
     "expo-status-bar": "~3.0.9",
@@ -28,7 +30,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "api:dev": "cd backend && bun run dev",
+    "api:start": "cd backend && bun run start",
+    "api:typecheck": "cd backend && bun run typecheck",
+    "api:test": "cd backend && bun run test",
+    "api:seed-knowledge": "cd backend && bun run seed:knowledge",
+    "api:check-deploy": "cd backend && bun run check:deploy",
+    "check:release": "bash scripts/check-release-config.sh",
+    "verify": "bun run typecheck && bun run api:typecheck && bun run api:test && bun run api:check-deploy && bun run check:release && bunx expo-doctor"
   },
   "private": true
 }

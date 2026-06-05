@@ -9,7 +9,9 @@ import { AuthScreen } from '../screens/AuthScreen';
 import { CameraScreen } from '../screens/CameraScreen';
 import { ChatScreen } from '../screens/ChatScreen';
 import { HistoryScreen } from '../screens/HistoryScreen';
+import { HistoryDetailScreen } from '../screens/HistoryDetailScreen';
 import { HomeScreen } from '../screens/HomeScreen';
+import { MapScreen } from '../screens/MapScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { ResultsScreen } from '../screens/ResultsScreen';
 import { VoiceScreen } from '../screens/VoiceScreen';
@@ -28,12 +30,13 @@ function MainTabs() {
         tabBarInactiveTintColor: colors.muted,
         tabBarStyle: { height: 64, paddingTop: 8, paddingBottom: 10 },
         tabBarIcon: ({ color, size }) => {
-          const icon = route.name === 'Home' ? 'home' : route.name === 'History' ? 'time' : 'person';
+          const icon = route.name === 'Home' ? 'home' : route.name === 'Map' ? 'map' : route.name === 'History' ? 'time' : 'person';
           return <Ionicons name={icon} size={size} color={color} />;
         },
       })}
     >
       <Tabs.Screen name="Home" component={HomeScreen} />
+      <Tabs.Screen name="Map" component={MapScreen} />
       <Tabs.Screen name="History" component={HistoryScreen} />
       <Tabs.Screen name="Profile" component={ProfileScreen} />
     </Tabs.Navigator>
@@ -61,6 +64,7 @@ export function RootNavigator() {
             <Stack.Screen name="Camera" component={CameraScreen} />
             <Stack.Screen name="Voice" component={VoiceScreen} />
             <Stack.Screen name="Results" component={ResultsScreen} />
+            <Stack.Screen name="HistoryDetail" component={HistoryDetailScreen} />
           </>
         ) : (
           <Stack.Screen name="Auth" component={AuthScreen} />

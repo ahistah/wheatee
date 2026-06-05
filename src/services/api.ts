@@ -1,34 +1,67 @@
-import { AdviceResult, DiagnosisResult, FarmProfile, HistoryRecord, Intent } from '../types';
-import { readJson, writeJson } from '../utils/storage';
+import { AdviceResult, BackendStatus, DiagnosisResult, FarmProfile, HistoryRecord, Intent, User } from '../types';
+import { refreshFirebaseUser } from './auth';
+import { readJson, removeItem, writeJson } from '../utils/storage';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
+const IS_PRODUCTION_APP = process.env.EXPO_PUBLIC_APP_ENV === 'production';
+const REQUEST_TIMEOUT_MS = 20000;
 const HISTORY_KEY = 'wheaty.history';
 const PROFILE_KEY = 'wheaty.profile';
+const AUTH_KEY = 'wheaty.user';
 
 type AskPayload = {
   text: string;
   audioUri?: string;
+  audioBase64?: string;
+  audioMimeType?: string;
   userId: string;
   farmProfile?: FarmProfile | null;
 };
 
 type DiagnosePayload = {
   imageUri?: string;
+  imageBase64?: string;
+  imageMimeType?: string;
   audioUri?: string;
+  audioBase64?: string;
+  audioMimeType?: string;
   text?: string;
   userId: string;
 };
 
 async function request<T>(path: string, options: RequestInit): Promise<T | null> {
-  if (!API_URL) return null;
+  if (!API_URL) {
+    if (IS_PRODUCTION_APP) {
+      throw new Error('Production app is missing EXPO_PUBLIC_API_URL.');
+    }
+    return null;
+  }
 
-  const response = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers ?? {}),
-    },
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  const authUser = await getValidAuthUser();
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+  if (authUser?.idToken) {
+    headers.Authorization = `Bearer ${authUser.idToken}`;
+  }
+  if (options.headers) {
+    new Headers(options.headers).forEach((value, key) => {
+      headers[key] = value;
+    });
+  }
+
+  let response: Response;
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      signal: controller.signal,
+      headers,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     throw new Error(`API ${path} failed with ${response.status}`);
@@ -37,12 +70,97 @@ async function request<T>(path: string, options: RequestInit): Promise<T | null>
   return (await response.json()) as T;
 }
 
+async function getValidAuthUser() {
+  const authUser = await readJson<User | null>(AUTH_KEY, null);
+  if (!authUser) return null;
+
+  try {
+    const refreshed = await refreshFirebaseUser(authUser);
+    if (refreshed !== authUser) {
+      await writeJson(AUTH_KEY, refreshed);
+    }
+    return refreshed;
+  } catch {
+    return authUser;
+  }
+}
+
+export function getBackendMode(): 'remote' | 'demo' {
+  return API_URL ? 'remote' : 'demo';
+}
+
+export async function getBackendStatus(): Promise<BackendStatus> {
+  if (!API_URL) {
+    if (IS_PRODUCTION_APP) {
+      return {
+        mode: 'remote',
+        reachable: false,
+        message: 'Production app is missing EXPO_PUBLIC_API_URL.',
+      };
+    }
+    return {
+      mode: 'demo',
+      reachable: true,
+      message: 'Demo mode: local agronomist responses and farm memory are active.',
+    };
+  }
+
+  try {
+    const health = await request<{
+      ok: boolean;
+      ready: boolean;
+      service: string;
+      mode: 'ai' | 'fallback';
+      mongo: boolean;
+      supabase: boolean;
+      firebase: boolean;
+      storage: boolean;
+      speech: boolean;
+      knowledgeBase: number;
+      missingConfig: string[];
+    }>('/health', { method: 'GET' });
+    const ready = health?.ready ?? false;
+    const missingConfig = health?.missingConfig ?? [];
+    return {
+      mode: 'remote',
+      baseUrl: API_URL,
+      reachable: Boolean(health?.ok),
+      ready,
+      service: health?.service,
+      ai: health?.mode === 'ai',
+      mongo: health?.mongo,
+      supabase: health?.supabase,
+      firebase: health?.firebase,
+      storage: health?.storage,
+      speech: health?.speech,
+      knowledgeBase: health?.knowledgeBase,
+      missingConfig,
+      message: ready
+        ? 'Connected to production-ready Wheaty AI backend.'
+        : missingConfig.length
+          ? `Backend is reachable but missing: ${missingConfig.join(', ')}.`
+          : health?.mode === 'ai'
+            ? 'Connected to Wheaty AI backend.'
+            : 'Connected to Wheaty backend in fallback mode.',
+    };
+  } catch {
+    return {
+      mode: 'remote',
+      baseUrl: API_URL,
+      reachable: false,
+      message: IS_PRODUCTION_APP
+        ? 'Backend is configured but not reachable. Check the deployed API before release.'
+        : 'Backend is configured but not reachable. Local history still works.',
+    };
+  }
+}
+
 function detectIntent(text: string, hasImage = false): Intent {
   const lower = text.toLowerCase();
-  if (hasImage || /yellow|leaf|rust|spot|disease|fungus|infect|pest/.test(lower)) return 'DISEASE';
+  if (/history|previous|last season|record|before|what happened|show previous|past/.test(lower)) return 'MEMORY_QUERY';
+  if (hasImage || /yellow|leaf|rust|spot|disease symptom|fungus|infect|pest|blight|mildew/.test(lower)) return 'DISEASE';
   if (/fertilizer|yield|production|urea|dap|harvest|increase/.test(lower)) return 'YIELD_ADVICE';
   if (/plan|layout|kanal|acre|divide|irrigation|schedule|water/.test(lower)) return 'FARM_PLANNING';
-  if (/history|previous|last season|record|before|diagnos/.test(lower)) return 'MEMORY_QUERY';
   return 'GENERAL_AGRICULTURE';
 }
 
@@ -109,6 +227,9 @@ export async function askWheaty(payload: AskPayload): Promise<AdviceResult> {
     method: 'POST',
     body: JSON.stringify(payload),
   });
+  if (IS_PRODUCTION_APP && !remote) {
+    throw new Error('Production advice requires the deployed Wheaty backend.');
+  }
   return remote ?? mockAdvice(payload);
 }
 
@@ -117,14 +238,75 @@ export async function diagnoseCrop(payload: DiagnosePayload): Promise<DiagnosisR
     method: 'POST',
     body: JSON.stringify(payload),
   });
+  if (IS_PRODUCTION_APP && !remote) {
+    throw new Error('Production diagnosis requires the deployed Wheaty backend.');
+  }
   return remote ?? mockDiagnosis(payload);
 }
 
+export function buildAdviceRecord(userId: string, input: string, result: AdviceResult): HistoryRecord {
+  return {
+    id: `record-${Date.now()}`,
+    userId,
+    type: result.intent === 'FARM_PLANNING' ? 'plan' : 'conversation',
+    input,
+    response: formatAdvice(result),
+    intent: result.intent,
+    timestamp: new Date().toISOString(),
+    actionItems: result.actionItems,
+    backendMode: getBackendMode(),
+  };
+}
+
+export function buildDiagnosisRecord(
+  userId: string,
+  input: string,
+  imageUri: string | undefined,
+  result: DiagnosisResult,
+): HistoryRecord {
+  return {
+    id: `diagnosis-${Date.now()}`,
+    userId,
+    type: 'diagnosis',
+    input: input || 'Crop image diagnosis',
+    response: formatDiagnosis(result),
+    intent: result.intent,
+    timestamp: new Date().toISOString(),
+    imageUri,
+    imageURL: result.imageURL,
+    imageDisplayURL: result.imageDisplayURL,
+    confidence: result.confidence,
+    actionItems: result.treatmentSteps,
+    backendMode: getBackendMode(),
+  };
+}
+
+export function formatAdvice(result: AdviceResult): string {
+  const actions = result.actionItems.length ? `\n\nAction plan\n${result.actionItems.map((item) => `- ${item}`).join('\n')}` : '';
+  return `${result.response}${actions}`;
+}
+
+export function formatDiagnosis(result: DiagnosisResult): string {
+  return [
+    `${result.disease} (${Math.round(result.confidence * 100)}% confidence)`,
+    `Visible symptoms\n${result.symptoms.map((item) => `- ${item}`).join('\n')}`,
+    `Treatment steps\n${result.treatmentSteps.map((item) => `- ${item}`).join('\n')}`,
+    result.recommendation,
+  ].join('\n\n');
+}
+
 export async function saveRecord(record: HistoryRecord): Promise<HistoryRecord> {
-  await request<HistoryRecord>('/records', {
-    method: 'POST',
-    body: JSON.stringify({ userId: record.userId, type: record.type, data: record }),
-  });
+  try {
+    await request<HistoryRecord>('/records', {
+      method: 'POST',
+      body: JSON.stringify({ userId: record.userId, type: record.type, data: record }),
+    });
+  } catch (error) {
+    if (IS_PRODUCTION_APP) {
+      throw error;
+    }
+    // Keep the farmer's local memory even if the deployed backend is temporarily unavailable.
+  }
 
   const current = await getHistory(record.userId);
   const next = [record, ...current.filter((item) => item.id !== record.id)].slice(0, 50);
@@ -133,9 +315,17 @@ export async function saveRecord(record: HistoryRecord): Promise<HistoryRecord> 
 }
 
 export async function getHistory(userId: string, limit = 20): Promise<HistoryRecord[]> {
-  const remote = await request<HistoryRecord[]>(`/history?userId=${encodeURIComponent(userId)}&limit=${limit}`, {
-    method: 'GET',
-  });
+  let remote: HistoryRecord[] | null = null;
+  try {
+    remote = await request<HistoryRecord[]>(`/history?userId=${encodeURIComponent(userId)}&limit=${limit}`, {
+      method: 'GET',
+    });
+  } catch (error) {
+    if (IS_PRODUCTION_APP) {
+      throw error;
+    }
+    remote = null;
+  }
   if (remote) return remote;
 
   const local = await readJson<HistoryRecord[]>(HISTORY_KEY, []);
@@ -143,16 +333,67 @@ export async function getHistory(userId: string, limit = 20): Promise<HistoryRec
 }
 
 export async function saveFarmProfile(profile: FarmProfile): Promise<FarmProfile> {
-  const remote = await request<FarmProfile>('/farm-profile', {
-    method: 'POST',
-    body: JSON.stringify(profile),
-  });
+  let remote: FarmProfile | null = null;
+  try {
+    remote = await request<FarmProfile>('/farm-profile', {
+      method: 'POST',
+      body: JSON.stringify(profile),
+    });
+  } catch (error) {
+    if (IS_PRODUCTION_APP) {
+      throw error;
+    }
+    remote = null;
+  }
   const saved = remote ?? profile;
+  if (IS_PRODUCTION_APP && !remote) {
+    throw new Error('Production profile save requires the deployed Wheaty backend.');
+  }
   await writeJson(PROFILE_KEY, saved);
   return saved;
 }
 
 export async function getFarmProfile(userId: string): Promise<FarmProfile | null> {
+  let receivedRemoteProfile = false;
+  try {
+    const remote = await request<FarmProfile | null>(`/farm-profile?userId=${encodeURIComponent(userId)}`, {
+      method: 'GET',
+    });
+    receivedRemoteProfile = true;
+    if (remote) {
+      await writeJson(PROFILE_KEY, remote);
+      return remote;
+    }
+  } catch (error) {
+    if (IS_PRODUCTION_APP) {
+      throw error;
+    }
+  }
+  if (IS_PRODUCTION_APP && receivedRemoteProfile) {
+    return null;
+  }
+
   const local = await readJson<FarmProfile | null>(PROFILE_KEY, null);
   return local?.userId === userId ? local : null;
+}
+
+export async function deleteAccountData(userId: string) {
+  const remote = await request<{
+    userId: string;
+    farmProfilesDeleted: number;
+    diagnosesDeleted: number;
+    conversationsDeleted: number;
+  }>(`/account-data?userId=${encodeURIComponent(userId)}`, {
+    method: 'DELETE',
+  });
+  if (IS_PRODUCTION_APP && !remote) {
+    throw new Error('Production data deletion requires the deployed Wheaty backend.');
+  }
+  await Promise.all([removeItem(PROFILE_KEY), removeItem(HISTORY_KEY)]);
+  return remote ?? {
+    userId,
+    farmProfilesDeleted: 0,
+    diagnosesDeleted: 0,
+    conversationsDeleted: 0,
+  };
 }

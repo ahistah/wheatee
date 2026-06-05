@@ -1,0 +1,375 @@
+openapi: 3.0.3
+info:
+  title: Wheaty API
+  version: 1.0.0
+  description: REST tools for the Wheaty digital agronomist agent.
+servers:
+  - url: https://YOUR_CLOUD_RUN_URL
+    description: Cloud Run production backend
+  - url: http://localhost:8080
+    description: Local development backend
+paths:
+  /health:
+    get:
+      operationId: health
+      summary: Check backend readiness.
+      responses:
+        "200":
+          description: Backend status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  ready:
+                    type: boolean
+                    description: True only when production cloud dependencies are configured.
+                  service:
+                    type: string
+                  mode:
+                    type: string
+                    enum: [ai, fallback]
+                  environment:
+                    type: string
+                  mongo:
+                    type: boolean
+                  supabase:
+                    type: boolean
+                  firebase:
+                    type: boolean
+                  storage:
+                    type: boolean
+                  speech:
+                    type: boolean
+                  knowledgeBase:
+                    type: integer
+                  missingConfig:
+                    type: array
+                    items:
+                      type: string
+  /knowledge-base:
+    get:
+      operationId: get_knowledge_base
+      summary: Return seeded crop, disease, treatment, and planning knowledge records.
+      responses:
+        "200":
+          description: Knowledge records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /diagnose:
+    post:
+      operationId: diagnose
+      summary: Diagnose crop disease from image and optional text/audio context.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DiagnoseRequest"
+      responses:
+        "200":
+          description: Disease diagnosis.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosisResult"
+  /ask:
+    post:
+      operationId: ask
+      summary: Route a farmer question to yield, planning, memory, or general agriculture workflows.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AskRequest"
+      responses:
+        "200":
+          description: Agronomy advice.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdviceResult"
+  /records:
+    post:
+      operationId: save_record
+      summary: Save a diagnosis, conversation, or planning record.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, type, data]
+              properties:
+                userId:
+                  type: string
+                type:
+                  type: string
+                  enum: [diagnosis, conversation, plan]
+                data:
+                  $ref: "#/components/schemas/HistoryRecord"
+      responses:
+        "200":
+          description: Saved record.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HistoryRecord"
+  /history:
+    get:
+      operationId: get_history
+      summary: Get recent farm memory for a user.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        "200":
+          description: Farm history records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HistoryRecord"
+  /farm-profile:
+    post:
+      operationId: save_farm_profile
+      summary: Create or update a farmer's farm profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FarmProfile"
+      responses:
+        "200":
+          description: Saved farm profile.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FarmProfile"
+    get:
+      operationId: get_farm_profile
+      summary: Retrieve a farmer's farm profile.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Farm profile or null.
+          content:
+            application/json:
+              schema:
+                nullable: true
+                oneOf:
+                  - $ref: "#/components/schemas/FarmProfile"
+  /account-data:
+    delete:
+      operationId: delete_account_data
+      summary: Delete a farmer's profile and farm memory records.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deleted record counts.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [userId, farmProfilesDeleted, diagnosesDeleted, conversationsDeleted]
+                properties:
+                  userId:
+                    type: string
+                  farmProfilesDeleted:
+                    type: integer
+                  diagnosesDeleted:
+                    type: integer
+                  conversationsDeleted:
+                    type: integer
+components:
+  schemas:
+    Intent:
+      type: string
+      enum: [DISEASE, YIELD_ADVICE, FARM_PLANNING, MEMORY_QUERY, GENERAL_AGRICULTURE]
+    FarmProfile:
+      type: object
+      required: [userId, farmSize, cropTypes, soilType, irrigationType, location]
+      properties:
+        userId:
+          type: string
+        farmSize:
+          type: string
+          example: 10 kanal
+        cropTypes:
+          type: array
+          items:
+            type: string
+          example: [wheat]
+        soilType:
+          type: string
+        irrigationType:
+          type: string
+        location:
+          type: string
+        boundaryGeoJson:
+          type: object
+          nullable: true
+          description: GeoJSON FeatureCollection containing the mapped farm boundary polygon.
+          example:
+            type: FeatureCollection
+            features:
+              - type: Feature
+                properties: {}
+                geometry:
+                  type: Polygon
+                  coordinates:
+                    - - [73.0419, 31.5174]
+                      - [73.0539, 31.5174]
+                      - [73.0539, 31.5234]
+                      - [73.0419, 31.5234]
+                      - [73.0419, 31.5174]
+        centerLat:
+          type: number
+          format: double
+          example: 31.5204
+        centerLng:
+          type: number
+          format: double
+          example: 73.0479
+        areaHectares:
+          type: number
+          format: double
+          example: 0.81
+        areaKanal:
+          type: number
+          format: double
+          example: 16.01
+    AskRequest:
+      type: object
+      required: [userId]
+      properties:
+        userId:
+          type: string
+        text:
+          type: string
+          description: Optional when audioBase64 is provided.
+        audioBase64:
+          type: string
+        audioMimeType:
+          type: string
+        farmProfile:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/FarmProfile"
+    DiagnoseRequest:
+      type: object
+      required: [userId]
+      properties:
+        userId:
+          type: string
+        text:
+          type: string
+        imageBase64:
+          type: string
+        imageMimeType:
+          type: string
+          example: image/jpeg
+        audioBase64:
+          type: string
+        audioMimeType:
+          type: string
+    AdviceResult:
+      type: object
+      required: [intent, response, actionItems]
+      properties:
+        intent:
+          $ref: "#/components/schemas/Intent"
+        response:
+          type: string
+        actionItems:
+          type: array
+          items:
+            type: string
+    DiagnosisResult:
+      type: object
+      required: [disease, confidence, symptoms, treatmentSteps, recommendation, intent]
+      properties:
+        disease:
+          type: string
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        symptoms:
+          type: array
+          items:
+            type: string
+        treatmentSteps:
+          type: array
+          items:
+            type: string
+        recommendation:
+          type: string
+        intent:
+          $ref: "#/components/schemas/Intent"
+        imageURL:
+          type: string
+          description: Durable backend storage reference for the uploaded crop image.
+        imageDisplayURL:
+          type: string
+          description: Short-lived URL that can be rendered by the mobile app.
+    HistoryRecord:
+      type: object
+      required: [id, userId, type, input, response, intent, timestamp]
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        type:
+          type: string
+          enum: [diagnosis, conversation, plan]
+        input:
+          type: string
+        response:
+          type: string
+        intent:
+          $ref: "#/components/schemas/Intent"
+        timestamp:
+          type: string
+          format: date-time
+        imageUri:
+          type: string
+        imageURL:
+          type: string
+        imageDisplayURL:
+          type: string
+        confidence:
+          type: number
+        actionItems:
+          type: array
+          items:
+            type: string

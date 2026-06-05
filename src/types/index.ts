@@ -1,3 +1,5 @@
+import type { NavigatorScreenParams } from '@react-navigation/native';
+
 export type Language = 'en' | 'ur';
 
 export type Intent =
@@ -12,6 +14,10 @@ export type User = {
   name: string;
   phoneOrEmail: string;
   language: Language;
+  authProvider: 'firebase' | 'demo';
+  idToken?: string;
+  refreshToken?: string;
+  idTokenExpiresAt?: number;
 };
 
 export type FarmProfile = {
@@ -21,6 +27,11 @@ export type FarmProfile = {
   soilType: string;
   irrigationType: string;
   location: string;
+  boundaryGeoJson?: unknown;
+  centerLat?: number;
+  centerLng?: number;
+  areaHectares?: number;
+  areaKanal?: number;
 };
 
 export type HistoryRecord = {
@@ -32,7 +43,11 @@ export type HistoryRecord = {
   intent: Intent;
   timestamp: string;
   imageUri?: string;
+  imageURL?: string;
+  imageDisplayURL?: string;
   confidence?: number;
+  actionItems?: string[];
+  backendMode?: 'remote' | 'demo';
 };
 
 export type DiagnosisResult = {
@@ -42,12 +57,38 @@ export type DiagnosisResult = {
   treatmentSteps: string[];
   recommendation: string;
   intent: Intent;
+  imageURL?: string;
+  imageDisplayURL?: string;
 };
 
 export type AdviceResult = {
   intent: Intent;
   response: string;
   actionItems: string[];
+};
+
+export type BackendStatus = {
+  mode: 'remote' | 'demo';
+  baseUrl?: string;
+  reachable: boolean;
+  ready?: boolean;
+  message: string;
+  service?: string;
+  ai?: boolean;
+  mongo?: boolean;
+  supabase?: boolean;
+  firebase?: boolean;
+  storage?: boolean;
+  speech?: boolean;
+  knowledgeBase?: number;
+  missingConfig?: string[];
+};
+
+export type MainTabParamList = {
+  Home: undefined;
+  Map: undefined;
+  History: undefined;
+  Profile: undefined;
 };
 
 export type RootStackParamList = {
@@ -60,11 +101,7 @@ export type RootStackParamList = {
     title: string;
     record: HistoryRecord;
   };
+  HistoryDetail: {
+    record: HistoryRecord;
+  };
 };
-
-export type MainTabParamList = {
-  Home: undefined;
-  History: undefined;
-  Profile: undefined;
-};
-import type { NavigatorScreenParams } from '@react-navigation/native';
