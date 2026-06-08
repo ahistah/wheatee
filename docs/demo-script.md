@@ -25,7 +25,7 @@
    - Irrigation: `canal + tube well`
    - Location: `Punjab, Pakistan`
 3. Open Map, tap field corners, confirm area in kanal/hectares, and save the farm boundary.
-4. Open Camera, select or capture wheat leaves, add symptom notes, and run diagnosis.
+4. Open Camera, select or capture wheat leaves, record a short Urdu or English voice note, add optional typed symptom notes, and run diagnosis.
 5. Open Chat and ask: `How much fertilizer for wheat on my 10 kanal farm?`
 6. Ask: `Organize my 10 kanal farm for irrigation.`
 7. Ask: `Show previous diseases.`
@@ -35,6 +35,6 @@
 
 - Home shows connected backend status.
 - Map saves farm boundary GeoJSON and computed area to the profile.
-- Diagnosis response includes disease, confidence, symptoms, and treatment steps.
+- Diagnosis response includes disease, confidence, symptoms, treatment steps, and uses the image + voice context.
 - Advice response includes intent-specific action plan.
 - History shows saved records with detail pages.

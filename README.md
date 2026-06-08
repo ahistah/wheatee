@@ -20,7 +20,9 @@ bun run api:typecheck
 bun run api:test
 bun run api:seed-knowledge
 bun run api:check-deploy
+WHEATY_API_URL=https://your-cloud-run-url bun run api:check-health
 bun run check:release
+EXPO_PUBLIC_API_URL=https://your-cloud-run-url EXPO_PUBLIC_FIREBASE_API_KEY=your-firebase-web-key EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.your-mapbox-token RNMAPBOX_MAPS_DOWNLOAD_TOKEN=sk.your-mapbox-download-token bun run check:eas-env
 bun run verify
 ```
 
@@ -78,7 +80,7 @@ RNMAPBOX_MAPS_DOWNLOAD_TOKEN=your-mapbox-downloads-token
 Mapbox uses native code, so farm maps are for development builds and Play Store builds, not Expo Go.
 The Farm Map tab lets farmers tap field corners, calculate area in hectares/kanal, and save the boundary GeoJSON to Supabase through the farm profile.
 
-The app calls the five MVP endpoints when `EXPO_PUBLIC_API_URL` is set:
+The app calls the five MVP endpoints when `EXPO_PUBLIC_API_URL` is set. Crop diagnosis supports image-only, image + typed notes, and image + voice context:
 
 - `POST /diagnose`
 - `POST /ask`

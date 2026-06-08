@@ -52,6 +52,11 @@
           "microphonePermission": "Wheaty uses the microphone to record farmer questions for agronomy advice."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1fe2b431-23be-4069-a192-6d24a0d3f3d1"
+      }
+    }
   }
 }

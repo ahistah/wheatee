@@ -53,6 +53,20 @@ export async function getCropImageDisplayURL(imageURL?: string) {
   return url;
 }
 
+export async function deleteFarmerCropImages(userId: string) {
+  if (!config.gcsBucket) {
+    if (!allowFallbacks()) throw new Error('Google Cloud Storage is required to delete production crop images.');
+    return 0;
+  }
+
+  storage ??= new Storage();
+  const [files] = await storage.bucket(config.gcsBucket).getFiles({
+    prefix: `crop-images/${userId}/`,
+  });
+  await Promise.all(files.map((file) => file.delete({ ignoreNotFound: true })));
+  return files.length;
+}
+
 function parseGsUrl(imageURL: string) {
   const withoutScheme = imageURL.slice('gs://'.length);
   const slashIndex = withoutScheme.indexOf('/');

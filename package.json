@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.1.10",
+    "eas-cli": "^20.0.0",
     "typescript": "~5.9.2"
   },
   "scripts": {
@@ -37,7 +38,9 @@
     "api:test": "cd backend && bun run test",
     "api:seed-knowledge": "cd backend && bun run seed:knowledge",
     "api:check-deploy": "cd backend && bun run check:deploy",
+    "api:check-health": "cd backend && bun run check:health",
     "check:release": "bash scripts/check-release-config.sh",
+    "check:eas-env": "bash scripts/check-eas-production-env.sh",
     "verify": "bun run typecheck && bun run api:typecheck && bun run api:test && bun run api:check-deploy && bun run check:release && bunx expo-doctor"
   },
   "private": true

@@ -21,7 +21,9 @@ Run from the repo root:
 ```bash
 bun install
 bun run verify
-EAS_BUILD_PROFILE=production EXPO_PUBLIC_APP_ENV=production EXPO_PUBLIC_API_URL=https://YOUR_CLOUD_RUN_URL EXPO_PUBLIC_FIREBASE_API_KEY=YOUR_FIREBASE_WEB_KEY EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN=YOUR_MAPBOX_PUBLIC_TOKEN RNMAPBOX_MAPS_DOWNLOAD_TOKEN=YOUR_MAPBOX_DOWNLOADS_TOKEN bunx expo config --type public
+WHEATY_API_URL=https://YOUR_CLOUD_RUN_URL bun run api:check-health
+EXPO_PUBLIC_API_URL=https://YOUR_CLOUD_RUN_URL EXPO_PUBLIC_FIREBASE_API_KEY=YOUR_FIREBASE_WEB_KEY EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.YOUR_MAPBOX_PUBLIC_TOKEN RNMAPBOX_MAPS_DOWNLOAD_TOKEN=sk.YOUR_MAPBOX_DOWNLOADS_TOKEN bun run check:eas-env
+EAS_BUILD_PROFILE=production EXPO_PUBLIC_APP_ENV=production EXPO_PUBLIC_API_URL=https://YOUR_CLOUD_RUN_URL EXPO_PUBLIC_FIREBASE_API_KEY=YOUR_FIREBASE_WEB_KEY EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.YOUR_MAPBOX_PUBLIC_TOKEN RNMAPBOX_MAPS_DOWNLOAD_TOKEN=sk.YOUR_MAPBOX_DOWNLOADS_TOKEN bunx expo config --type public
 eas build --platform android --profile production
 ```
 
@@ -74,11 +76,11 @@ Install the production build on a physical Android device and verify:
 2. Home shows a reachable, production-ready backend.
 3. Profile saves to Supabase and reloads after app restart.
 4. Map saves a farm boundary and computed hectares/kanal.
-5. Camera diagnosis returns a remote AI-backed record.
+5. Camera diagnosis accepts a crop image plus voice context and returns a remote AI-backed record.
 6. Voice question sends audio/transcript context successfully.
 7. Chat returns intent-specific advice.
 8. History shows saved diagnosis, plan, conversation, and memory records.
 9. Sign out clears the local session.
-10. Profile deletion removes farm profile/history and returns to signed-out state.
+10. Profile deletion removes farm profile, diagnosis history, uploaded crop images, and returns to signed-out state.
 
 Do not submit until the smoke test passes against the production Cloud Run URL.

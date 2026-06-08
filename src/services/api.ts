@@ -383,6 +383,7 @@ export async function deleteAccountData(userId: string) {
     farmProfilesDeleted: number;
     diagnosesDeleted: number;
     conversationsDeleted: number;
+    cropImagesDeleted: number;
   }>(`/account-data?userId=${encodeURIComponent(userId)}`, {
     method: 'DELETE',
   });
@@ -395,5 +396,6 @@ export async function deleteAccountData(userId: string) {
     farmProfilesDeleted: 0,
     diagnosesDeleted: 0,
     conversationsDeleted: 0,
+    cropImagesDeleted: 0,
   };
 }

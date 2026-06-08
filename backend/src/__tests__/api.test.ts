@@ -208,6 +208,7 @@ describe('Wheaty API', () => {
       farmProfilesDeleted: number;
       diagnosesDeleted: number;
       conversationsDeleted: number;
+      cropImagesDeleted: number;
     }>(`/account-data?userId=${userId}`, { method: 'DELETE' });
     const profile = await request(`/farm-profile?userId=${userId}`);
     const history = await request<unknown[]>(`/history?userId=${userId}`);
@@ -216,6 +217,7 @@ describe('Wheaty API', () => {
     expect(deleted.body.userId).toBe(userId);
     expect(deleted.body.farmProfilesDeleted).toBe(1);
     expect(deleted.body.conversationsDeleted).toBe(1);
+    expect(deleted.body.cropImagesDeleted).toBe(0);
     expect(profile.body).toBeNull();
     expect(history.body).toEqual([]);
   });

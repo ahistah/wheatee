@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "bun test",
     "seed:knowledge": "bun src/scripts/seedKnowledgeBase.ts",
-    "check:deploy": "bash scripts/check-deploy-artifacts.sh"
+    "check:deploy": "bash scripts/check-deploy-artifacts.sh",
+    "check:health": "bash scripts/check-production-health.sh"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.16.0",

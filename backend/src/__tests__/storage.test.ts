@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, test } from 'bun:test';
 
 import { config } from '../config.js';
-import { getCropImageDisplayURL, uploadCropImage } from '../services/storage.js';
+import { deleteFarmerCropImages, getCropImageDisplayURL, uploadCropImage } from '../services/storage.js';
 
 const originalNodeEnv = config.nodeEnv;
 const originalGcsBucket = config.gcsBucket;
@@ -49,6 +49,22 @@ describe('crop image storage', () => {
 
     await expect(getCropImageDisplayURL('gs://wheaty-crop-images/crop-images/farmer-a/image.jpg')).rejects.toThrow(
       'Google Cloud Storage is required to read production crop images.',
+    );
+  });
+
+  test('allows local development deletion without a GCS bucket', async () => {
+    config.nodeEnv = 'development';
+    config.gcsBucket = undefined;
+
+    await expect(deleteFarmerCropImages('farmer-a')).resolves.toBe(0);
+  });
+
+  test('rejects production crop image deletion when GCS is missing', async () => {
+    config.nodeEnv = 'production';
+    config.gcsBucket = undefined;
+
+    await expect(deleteFarmerCropImages('farmer-a')).rejects.toThrow(
+      'Google Cloud Storage is required to delete production crop images.',
     );
   });
 });

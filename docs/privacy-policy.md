@@ -76,7 +76,7 @@ Farmers can:
 
 - Choose not to grant camera, photo library, or microphone permissions.
 - Edit or omit optional notes before submitting a diagnosis or voice question.
-- Delete farm profile, mapped boundary, diagnosis history, saved advice, and local farm cache from the Profile screen.
+- Delete farm profile, mapped boundary, diagnosis history, saved advice, uploaded crop images, and local farm cache from the Profile screen.
 - Sign out from the app.
 - Request account or farm data deletion by contacting `[support email]`.
 

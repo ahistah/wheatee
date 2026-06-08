@@ -66,6 +66,8 @@ paths:
     post:
       operationId: diagnose
       summary: Diagnose crop disease from image and optional text/audio context.
+      security:
+        - firebaseBearer: []
       requestBody:
         required: true
         content:
@@ -83,6 +85,8 @@ paths:
     post:
       operationId: ask
       summary: Route a farmer question to yield, planning, memory, or general agriculture workflows.
+      security:
+        - firebaseBearer: []
       requestBody:
         required: true
         content:
@@ -100,6 +104,8 @@ paths:
     post:
       operationId: save_record
       summary: Save a diagnosis, conversation, or planning record.
+      security:
+        - firebaseBearer: []
       requestBody:
         required: true
         content:
@@ -126,6 +132,8 @@ paths:
     get:
       operationId: get_history
       summary: Get recent farm memory for a user.
+      security:
+        - firebaseBearer: []
       parameters:
         - name: userId
           in: query
@@ -151,6 +159,8 @@ paths:
     post:
       operationId: save_farm_profile
       summary: Create or update a farmer's farm profile.
+      security:
+        - firebaseBearer: []
       requestBody:
         required: true
         content:
@@ -167,6 +177,8 @@ paths:
     get:
       operationId: get_farm_profile
       summary: Retrieve a farmer's farm profile.
+      security:
+        - firebaseBearer: []
       parameters:
         - name: userId
           in: query
@@ -186,6 +198,8 @@ paths:
     delete:
       operationId: delete_account_data
       summary: Delete a farmer's profile and farm memory records.
+      security:
+        - firebaseBearer: []
       parameters:
         - name: userId
           in: query
@@ -199,7 +213,7 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [userId, farmProfilesDeleted, diagnosesDeleted, conversationsDeleted]
+                required: [userId, farmProfilesDeleted, diagnosesDeleted, conversationsDeleted, cropImagesDeleted]
                 properties:
                   userId:
                     type: string
@@ -209,7 +223,15 @@ paths:
                     type: integer
                   conversationsDeleted:
                     type: integer
+                  cropImagesDeleted:
+                    type: integer
 components:
+  securitySchemes:
+    firebaseBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: Firebase ID token
+      description: Firebase Authentication ID token. Required for farmer-data endpoints; the token uid must match request userId.
   schemas:
     Intent:
       type: string

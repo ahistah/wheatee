@@ -56,9 +56,24 @@ set +a
 ./scripts/deploy-cloud-run.sh
 ```
 
+After deployment, verify the deployed API is production-ready:
+
+```bash
+WHEATY_API_URL=https://your-cloud-run-url bun run check:health
+```
+
 Run `supabase/schema.sql` in the Supabase SQL editor before deploying.
 
 Set `SUPABASE_SERVICE_ROLE_KEY` and `FIREBASE_SERVICE_ACCOUNT_JSON` as Cloud Run secrets in production. Supabase is the production database; MongoDB support is retained only as a migration/development adapter.
+
+`cloudrun.env` should contain the secret names, not the secret values:
+
+```bash
+SUPABASE_SERVICE_ROLE_KEY_SECRET=wheaty-supabase-service-role-key
+FIREBASE_SERVICE_ACCOUNT_JSON_SECRET=wheaty-firebase-service-account-json
+```
+
+The deploy script runs `scripts/check-cloud-run-config.sh`, sets `NODE_ENV=production`, and mounts those secrets into Cloud Run as `SUPABASE_SERVICE_ROLE_KEY` and `FIREBASE_SERVICE_ACCOUNT_JSON`.
 
 Production startup requires Supabase, Firebase, Vertex AI, Speech-to-Text, and GCS configuration. Fallback responses are disabled when `NODE_ENV=production`, and crop image diagnosis fails closed if image upload to GCS is unavailable.
 
