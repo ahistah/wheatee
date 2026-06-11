@@ -1,2 +1,10 @@
-node_modules 
-.env 
+node_modules
+.env
+backend/.env
+.expo/
+dist/
+build/
+android/
+ios/
+*.log
+.env

@@ -66,7 +66,7 @@ export function ProfileScreen() {
     if (!user) return;
     Alert.alert(
       'Delete farm data?',
-      'This removes your farm profile, mapped boundary, diagnosis history, and saved advice from Wheaty. This cannot be undone.',
+      'This removes your farm profile, mapped boundary, diagnosis history, and saved advice from Wheatee. This cannot be undone.',
       [
         { text: 'Cancel', style: 'cancel' },
         {

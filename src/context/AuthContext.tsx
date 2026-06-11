@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react';
 
 import { Language, User } from '../types';
-import { authenticateUser, refreshFirebaseUser } from '../services/auth';
+import { authenticateUser, createAnonymousUser, refreshFirebaseUser } from '../services/auth';
 import { readJson, removeItem, writeJson } from '../utils/storage';
 
 type AuthContextValue = {
@@ -12,7 +12,7 @@ type AuthContextValue = {
   refreshSession: () => Promise<User | null>;
 };
 
-const AUTH_KEY = 'wheaty.user';
+const AUTH_KEY = 'wheatee.user';
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: PropsWithChildren) {
@@ -21,8 +21,18 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     readJson<User | null>(AUTH_KEY, null)
-      .then(setUser)
-      .catch(() => setUser(null))
+      .then(async (savedUser) => {
+        const nextUser = savedUser ?? createAnonymousUser();
+        if (!savedUser) {
+          await writeJson(AUTH_KEY, nextUser);
+        }
+        setUser(nextUser);
+      })
+      .catch(async () => {
+        const nextUser = createAnonymousUser();
+        await writeJson(AUTH_KEY, nextUser);
+        setUser(nextUser);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -36,8 +46,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
         setUser(nextUser);
       },
       signOut: async () => {
+        const nextUser = createAnonymousUser();
         await removeItem(AUTH_KEY);
-        setUser(null);
+        await writeJson(AUTH_KEY, nextUser);
+        setUser(nextUser);
       },
       refreshSession: async () => {
         if (!user) return null;

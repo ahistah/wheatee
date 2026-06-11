@@ -34,7 +34,7 @@ afterAll(async () => {
   await closeDatabase();
 });
 
-describe('Wheaty API', () => {
+describe('Wheatee API', () => {
   test('reports backend readiness', async () => {
     const response = await request<{
       ok: boolean;
@@ -53,7 +53,7 @@ describe('Wheaty API', () => {
     expect(response.status).toBe(200);
     expect(response.body.ok).toBe(true);
     expect(response.body.ready).toBe(false);
-    expect(response.body.service).toBe('wheaty-api');
+    expect(response.body.service).toBe('wheatee-api');
     expect(response.body.mode).toBe('fallback');
     expect(typeof response.body.environment).toBe('string');
     expect(response.body.supabase).toBe(false);

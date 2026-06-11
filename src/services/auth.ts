@@ -1,8 +1,8 @@
 import { Language, User } from '../types';
 
 const FIREBASE_API_KEY = process.env.EXPO_PUBLIC_FIREBASE_API_KEY;
-const IS_PRODUCTION_APP = process.env.EXPO_PUBLIC_APP_ENV === 'production';
 const TOKEN_REFRESH_SKEW_MS = 5 * 60 * 1000;
+const AUTH_DISABLED = process.env.EXPO_PUBLIC_ENABLE_FIREBASE_AUTH !== '1';
 
 type FirebaseAuthResponse = {
   idToken: string;
@@ -56,17 +56,8 @@ async function firebaseAuth(action: 'signInWithPassword' | 'signUp', email: stri
 export async function authenticateUser(name: string, email: string, password: string, language: Language): Promise<User> {
   const normalizedEmail = email.trim().toLowerCase();
 
-  if (!FIREBASE_API_KEY) {
-    if (IS_PRODUCTION_APP) {
-      throw new Error('Production app is missing EXPO_PUBLIC_FIREBASE_API_KEY.');
-    }
-    return {
-      userId: `farmer-${Date.now()}`,
-      name: name.trim() || 'Wheat Farmer',
-      phoneOrEmail: normalizedEmail || 'demo@wheaty.app',
-      language,
-      authProvider: 'demo',
-    };
+  if (AUTH_DISABLED || !FIREBASE_API_KEY) {
+    return createAnonymousUser(name, normalizedEmail, language);
   }
 
   if (!normalizedEmail || !password) {
@@ -93,6 +84,16 @@ export async function authenticateUser(name: string, email: string, password: st
     idToken: result.idToken,
     refreshToken: result.refreshToken,
     idTokenExpiresAt: expiresAt(result.expiresIn),
+  };
+}
+
+export function createAnonymousUser(name = 'Wheat Farmer', phoneOrEmail = 'local@wheatee.app', language: Language = 'en'): User {
+  return {
+    userId: 'anonymous-farmer',
+    name: name.trim() || 'Wheat Farmer',
+    phoneOrEmail: phoneOrEmail.trim().toLowerCase() || 'local@wheatee.app',
+    language,
+    authProvider: 'demo',
   };
 }
 

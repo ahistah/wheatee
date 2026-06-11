@@ -3,7 +3,6 @@ set -euo pipefail
 
 required_vars=(
   EXPO_PUBLIC_API_URL
-  EXPO_PUBLIC_FIREBASE_API_KEY
   EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN
   RNMAPBOX_MAPS_DOWNLOAD_TOKEN
 )
@@ -22,7 +21,6 @@ fi
 
 values_to_check=(
   "$EXPO_PUBLIC_API_URL"
-  "$EXPO_PUBLIC_FIREBASE_API_KEY"
   "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
   "$RNMAPBOX_MAPS_DOWNLOAD_TOKEN"
 )
@@ -51,6 +49,6 @@ fi
 
 EAS_BUILD_PROFILE=production \
 EXPO_PUBLIC_APP_ENV=production \
-bunx expo config --type public >/tmp/wheaty-eas-production-env-config.txt
+bunx expo config --type public >/tmp/wheatee-eas-production-env-config.txt
 
 echo "Production EAS env check passed."

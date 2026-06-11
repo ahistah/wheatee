@@ -10,7 +10,7 @@ import { Screen } from '../components/Screen';
 import { StatusBanner } from '../components/StatusBanner';
 import { useAuth } from '../context/AuthContext';
 import { useFarm } from '../context/FarmContext';
-import { askWheaty, buildAdviceRecord, saveRecord } from '../services/api';
+import { askWheatee, buildAdviceRecord, saveRecord } from '../services/api';
 import { RootStackParamList } from '../types';
 import { colors } from '../utils/theme';
 
@@ -64,7 +64,7 @@ export function VoiceScreen() {
     setLoading(true);
     setNotice(null);
     try {
-      const result = await askWheaty({
+      const result = await askWheatee({
         text: transcript.trim(),
         audioUri,
         audioBase64,
@@ -104,7 +104,7 @@ export function VoiceScreen() {
         multiline
         style={styles.input}
       />
-      {loading ? <ActivityIndicator color={colors.leafDark} /> : <Button label="Ask Wheaty" icon="send" onPress={submitVoice} disabled={!transcript.trim()} />}
+      {loading ? <ActivityIndicator color={colors.leafDark} /> : <Button label="Ask Wheatee" icon="send" onPress={submitVoice} disabled={!transcript.trim()} />}
     </Screen>
   );
 }

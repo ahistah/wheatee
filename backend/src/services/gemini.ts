@@ -49,7 +49,7 @@ export async function generateAdvice(text: string, farmProfile: FarmProfile | nu
     const result = await vertexGenerate([
       {
         text: [
-          'You are Wheaty, a practical digital agronomist for wheat farmers in Pakistan.',
+          'You are Wheatee, a practical digital agronomist for wheat farmers in Pakistan.',
           'Classify the intent as DISEASE, YIELD_ADVICE, FARM_PLANNING, MEMORY_QUERY, or GENERAL_AGRICULTURE.',
           'Return JSON only with keys: intent, response, actionItems.',
           `Farm profile: ${JSON.stringify(farmProfile)}`,
@@ -84,7 +84,7 @@ export async function diagnoseCrop(
     const parts: Array<Record<string, unknown>> = [
       {
         text: [
-          'You are Wheaty, a crop disease diagnosis agent for wheat farmers in Pakistan.',
+          'You are Wheatee, a crop disease diagnosis agent for wheat farmers in Pakistan.',
           'Return JSON only with keys: disease, confidence, symptoms, treatmentSteps, recommendation, intent.',
           'confidence must be a number from 0 to 1. intent must be DISEASE.',
           `Farm profile: ${JSON.stringify(farmProfile)}`,
@@ -172,7 +172,7 @@ function fallbackAdvice(text: string, intent: Intent, farmProfile: FarmProfile |
 
   return {
     intent,
-    response: knowledge?.response ?? `Wheaty reviewed: "${text}". Share crop stage, farm size, and symptoms for more specific guidance.`,
+    response: knowledge?.response ?? `Wheatee reviewed: "${text}". Share crop stage, farm size, and symptoms for more specific guidance.`,
     actionItems: knowledge?.actionItems ?? ['Add farm profile details.', 'Upload a crop image when symptoms are visible.'],
   };
 }

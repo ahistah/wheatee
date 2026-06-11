@@ -1,7 +1,7 @@
 const { VertexAI } = require('@google-cloud/vertexai');
 
 const vertexAI = new VertexAI({
-  project: process.env.VERTEX_PROJECT_ID || 'wheaty-hackathon-498716',
+  project: process.env.VERTEX_PROJECT_ID || 'wheatee-hackathon-498716',
   location: process.env.VERTEX_LOCATION || 'us-central1'
 });
 

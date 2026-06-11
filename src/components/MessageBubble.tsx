@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../utils/theme';
 
-export function MessageBubble({ role, text }: { role: 'farmer' | 'wheaty'; text: string }) {
+export function MessageBubble({ role, text }: { role: 'farmer' | 'wheatee'; text: string }) {
   const isFarmer = role === 'farmer';
   return (
-    <View style={[styles.bubble, isFarmer ? styles.farmer : styles.wheaty]}>
+    <View style={[styles.bubble, isFarmer ? styles.farmer : styles.wheatee]}>
       <Text style={[styles.text, isFarmer && styles.farmerText]}>{text}</Text>
     </View>
   );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     backgroundColor: colors.leafDark,
   },
-  wheaty: {
+  wheatee: {
     alignSelf: 'flex-start',
     backgroundColor: colors.surface,
     borderWidth: 1,

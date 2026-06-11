@@ -47,7 +47,7 @@ describe('crop image storage', () => {
     config.nodeEnv = 'production';
     config.gcsBucket = undefined;
 
-    await expect(getCropImageDisplayURL('gs://wheaty-crop-images/crop-images/farmer-a/image.jpg')).rejects.toThrow(
+    await expect(getCropImageDisplayURL('gs://wheatee-crop-images/crop-images/farmer-a/image.jpg')).rejects.toThrow(
       'Google Cloud Storage is required to read production crop images.',
     );
   });

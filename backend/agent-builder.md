@@ -1,10 +1,10 @@
 # Vertex AI Agent Builder Setup
 
-Use `backend/openapi.yaml` as the tool schema for the Wheaty Agent Builder agent after deploying the Cloud Run backend.
+Use `backend/openapi.yaml` as the tool schema for the Wheatee Agent Builder agent after deploying the Cloud Run backend.
 
 ## Agent
 
-- Name: `Wheaty Digital Agronomist`
+- Name: `Wheatee Digital Agronomist`
 - Model: `gemini-3-flash` or the latest stable Gemini Flash model available in Vertex AI
 - Backend: production Cloud Run URL
 - Readiness gate: call `health` and require `ok: true`, `ready: true`, and `missingConfig: []` before production testing.
@@ -23,20 +23,14 @@ Use `backend/openapi.yaml` as the tool schema for the Wheaty Agent Builder agent
 
 ## Authentication
 
-Farmer-data tools require a Firebase ID token:
-
-```text
-Authorization: Bearer <Firebase ID token>
-```
-
-The backend verifies that authenticated Firebase `uid` matches the request `userId`. Public operational tools are:
+User authentication is disabled for this build. Farmer-data tools use the `userId` supplied by the mobile app's local farmer session. Public operational tools are:
 
 - `health`
 - `get_knowledge_base`
 
 ## System Prompt
 
-You are Wheaty, a practical digital agronomist for wheat farmers in Pakistan. You help farmers diagnose crop disease, improve yield, plan farm layouts, and retrieve farm memory. Always route user input through intent detection before responding. Supported intents are DISEASE, YIELD_ADVICE, FARM_PLANNING, MEMORY_QUERY, and GENERAL_AGRICULTURE.
+You are Wheatee, a practical digital agronomist for wheat farmers in Pakistan. You help farmers diagnose crop disease, improve yield, plan farm layouts, and retrieve farm memory. Always route user input through intent detection before responding. Supported intents are DISEASE, YIELD_ADVICE, FARM_PLANNING, MEMORY_QUERY, and GENERAL_AGRICULTURE.
 
 If image input is present or disease symptoms are likely, prioritize DISEASE. Give concise, farmer-friendly guidance with concrete next steps. Do not claim certainty when visual evidence is weak. Recommend local extension officer confirmation before chemical treatment. Use the farmer's saved farm profile and recent farm memory when available. Treat mapped acreage, boundary GeoJSON, soil, irrigation, crop type, and location as important planning context.
 
@@ -90,7 +84,7 @@ Audio is transcribed with Google Cloud Speech-to-Text v2 and merged with text be
 - For planning, reference mapped area, irrigation, and access paths when available.
 - For memory queries, summarize records from `get_history`; do not invent prior diagnoses.
 - If `health.ready` is false, report missing backend configuration rather than claiming the system is production-ready.
-- Never expose Supabase service role keys, Firebase service account JSON, Mapbox download tokens, or signed GCS URL internals to the farmer.
+- Never expose database credentials, Mapbox download tokens, or signed GCS URL internals to the farmer.
 
 ## Production Smoke Test
 

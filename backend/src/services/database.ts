@@ -79,7 +79,7 @@ export async function saveFarmProfile(profile: FarmProfile): Promise<FarmProfile
   }
 
   const database = await db();
-  if (!database && !allowFallbacks()) throw new Error('Production persistence requires Supabase.');
+  if (!database && !allowFallbacks()) throw new Error('Production persistence requires MongoDB.');
   if (database) {
     await database.collection<FarmProfile>('farm_profiles').updateOne({ userId: profile.userId }, { $set: profile }, { upsert: true });
     return profile;
@@ -100,7 +100,7 @@ export async function getFarmProfile(userId: string): Promise<FarmProfile | null
   }
 
   const database = await db();
-  if (!database && !allowFallbacks()) throw new Error('Production persistence requires Supabase.');
+  if (!database && !allowFallbacks()) throw new Error('Production persistence requires MongoDB.');
   if (database) {
     return database.collection<FarmProfile>('farm_profiles').findOne({ userId });
   }
@@ -118,7 +118,7 @@ export async function saveHistoryRecord(record: HistoryRecord): Promise<HistoryR
   }
 
   const database = await db();
-  if (!database && !allowFallbacks()) throw new Error('Production persistence requires Supabase.');
+  if (!database && !allowFallbacks()) throw new Error('Production persistence requires MongoDB.');
   if (database) {
     await database.collection<HistoryRecord>(collectionName(record.type)).updateOne({ id: record.id }, { $set: record }, { upsert: true });
     return record;
@@ -149,7 +149,7 @@ export async function getHistory(userId: string, limit: number): Promise<History
   }
 
   const database = await db();
-  if (!database && !allowFallbacks()) throw new Error('Production persistence requires Supabase.');
+  if (!database && !allowFallbacks()) throw new Error('Production persistence requires MongoDB.');
   if (database) {
     const [diagnoses, conversations] = await Promise.all([
       database.collection<HistoryRecord>('diagnoses').find({ userId }).sort({ timestamp: -1 }).limit(limit).toArray(),
@@ -186,7 +186,7 @@ export async function deleteFarmerData(userId: string): Promise<DeleteFarmerData
   }
 
   const database = await db();
-  if (!database && !allowFallbacks()) throw new Error('Production persistence requires Supabase.');
+  if (!database && !allowFallbacks()) throw new Error('Production persistence requires MongoDB.');
   if (database) {
     const [farmProfiles, diagnoses, conversations] = await Promise.all([
       database.collection<FarmProfile>('farm_profiles').deleteMany({ userId }),
@@ -228,7 +228,7 @@ export async function seedKnowledgeBase() {
   }
 
   const database = await db();
-  if (!database && !allowFallbacks()) throw new Error('Production persistence requires Supabase.');
+  if (!database && !allowFallbacks()) throw new Error('Production persistence requires MongoDB.');
   if (!database) {
     return {
       mode: 'memory' as const,

@@ -4,9 +4,7 @@ set -euo pipefail
 required_vars=(
   GOOGLE_CLOUD_PROJECT
   GCS_BUCKET
-  SUPABASE_URL
-  SUPABASE_SERVICE_ROLE_KEY_SECRET
-  FIREBASE_SERVICE_ACCOUNT_JSON_SECRET
+  MONGO_URI
 )
 
 for name in "${required_vars[@]}"; do
@@ -19,9 +17,7 @@ done
 values_to_check=(
   "$GOOGLE_CLOUD_PROJECT"
   "$GCS_BUCKET"
-  "$SUPABASE_URL"
-  "$SUPABASE_SERVICE_ROLE_KEY_SECRET"
-  "$FIREBASE_SERVICE_ACCOUNT_JSON_SECRET"
+  "$MONGO_URI"
 )
 
 for value in "${values_to_check[@]}"; do

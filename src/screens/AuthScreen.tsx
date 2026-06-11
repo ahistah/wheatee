@@ -9,13 +9,12 @@ import { Language } from '../types';
 import { colors } from '../utils/theme';
 
 const isProductionApp = process.env.EXPO_PUBLIC_APP_ENV === 'production';
-const hasFirebaseAuth = Boolean(process.env.EXPO_PUBLIC_FIREBASE_API_KEY);
 
 export function AuthScreen() {
   const { signIn } = useAuth();
   const [name, setName] = useState(isProductionApp ? '' : 'Ahmed Khan');
-  const [phoneOrEmail, setPhoneOrEmail] = useState(isProductionApp ? '' : 'demo@wheaty.app');
-  const [password, setPassword] = useState(isProductionApp ? '' : 'wheaty-demo');
+  const [phoneOrEmail, setPhoneOrEmail] = useState(isProductionApp ? '' : 'demo@wheatee.app');
+  const [password, setPassword] = useState(isProductionApp ? '' : 'wheatee-demo');
   const [language, setLanguage] = useState<Language>('en');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,21 +34,19 @@ export function AuthScreen() {
   return (
     <Screen>
       <View style={styles.hero}>
-        <Text style={styles.brand}>Wheaty</Text>
+        <Text style={styles.brand}>Wheatee</Text>
         <Text style={styles.title}>Digital agronomist for wheat farmers</Text>
         <Text style={styles.subtitle}>Image, voice, chat, farm memory, and planning in one mobile workflow.</Text>
       </View>
 
       <View style={styles.form}>
         <StatusBanner
-          tone={hasFirebaseAuth ? 'success' : isProductionApp ? 'danger' : 'info'}
-          icon={hasFirebaseAuth ? 'shield-checkmark' : isProductionApp ? 'alert-circle' : 'phone-portrait'}
+          tone="info"
+          icon="phone-portrait"
           text={
-            hasFirebaseAuth
-              ? 'Firebase Authentication is enabled.'
-              : isProductionApp
-                ? 'Firebase Authentication is required for production sign-in.'
-                : 'Demo login is active until Firebase env vars are configured.'
+            isProductionApp
+              ? 'Authentication is disabled for this build. A local farmer session is used.'
+              : 'Local farmer session is active.'
           }
         />
         {error ? <StatusBanner tone="danger" icon="alert-circle" text={error} /> : null}

@@ -7,7 +7,7 @@ let firebaseReady = false;
 const publicPaths = new Set(['/health', '/knowledge-base']);
 
 function initFirebase() {
-  if (firebaseReady || !config.firebaseServiceAccountJson) return;
+  if (firebaseReady || !config.enableFirebaseAuth || !config.firebaseServiceAccountJson) return;
 
   const credential = admin.credential.cert(JSON.parse(config.firebaseServiceAccountJson));
   admin.initializeApp({

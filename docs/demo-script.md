@@ -1,4 +1,4 @@
-# Wheaty Demo Script
+# Wheatee Demo Script
 
 ## Setup
 

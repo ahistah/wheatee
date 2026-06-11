@@ -24,7 +24,6 @@ done
 required_env_names=(
   EXPO_PUBLIC_APP_ENV
   EXPO_PUBLIC_API_URL
-  EXPO_PUBLIC_FIREBASE_API_KEY
   EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN
   RNMAPBOX_MAPS_DOWNLOAD_TOKEN
 )
@@ -37,10 +36,10 @@ grep -q '"description": "AI-powered wheat farming assistant' app.json
 grep -q 'Privacy policy URL' docs/play-store-release.md
 grep -q 'docs/privacy-policy.md' docs/play-store-release.md
 grep -q 'Data Safety' docs/play-store-release.md
-grep -q 'Firebase Authentication' docs/privacy-policy.md
+grep -q 'local farmer session' docs/privacy-policy.md
 grep -q 'Delete farm profile' docs/privacy-policy.md
 grep -q 'uploaded crop images' docs/privacy-policy.md
-grep -q 'Supabase Postgres' docs/privacy-policy.md
+grep -q 'MongoDB Atlas' docs/privacy-policy.md
 grep -q 'Vertex AI/Gemini' docs/privacy-policy.md
 grep -q 'Google Cloud Speech-to-Text' docs/privacy-policy.md
 grep -q 'Mapbox' docs/privacy-policy.md
@@ -50,17 +49,6 @@ grep -q 'RNMAPBOX_MAPS_DOWNLOAD_TOKEN must be a secret Mapbox downloads token' s
 EAS_BUILD_PROFILE=production \
 EXPO_PUBLIC_APP_ENV=production \
 EXPO_PUBLIC_API_URL=https://example.com \
-EXPO_PUBLIC_FIREBASE_API_KEY=test-firebase-key \
 EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.test \
 RNMAPBOX_MAPS_DOWNLOAD_TOKEN=sk.test \
-bunx expo config --type public >/tmp/wheaty-expo-production-config.txt
-
-if EAS_BUILD_PROFILE=production \
-  EXPO_PUBLIC_APP_ENV=production \
-  EXPO_PUBLIC_API_URL=https://example.com \
-  EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.test \
-  RNMAPBOX_MAPS_DOWNLOAD_TOKEN=sk.test \
-  bunx expo config --type public >/tmp/wheaty-expo-missing-firebase-config.txt 2>&1; then
-  echo "Expected production Expo config to fail without EXPO_PUBLIC_FIREBASE_API_KEY."
-  exit 1
-fi
+bunx expo config --type public >/tmp/wheatee-expo-production-config.txt

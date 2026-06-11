@@ -1,5 +1,5 @@
 {
-  "name": "wheaty-api",
+  "name": "wheatee-api",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "dev": "bun --watch src/server.ts",
     "start": "bun src/server.ts",
     "typecheck": "tsc --noEmit",
-    "test": "bun test",
+    "test": "env -u MONGO_URI -u SUPABASE_URL -u SUPABASE_SERVICE_ROLE_KEY -u FIREBASE_SERVICE_ACCOUNT_JSON -u VERTEX_PROJECT_ID -u GOOGLE_APPLICATION_CREDENTIALS -u GCS_BUCKET -u SPEECH_PROJECT_ID WHEATY_SKIP_DOTENV=1 bun test",
     "seed:knowledge": "bun src/scripts/seedKnowledgeBase.ts",
     "check:deploy": "bash scripts/check-deploy-artifacts.sh",
     "check:health": "bash scripts/check-production-health.sh"

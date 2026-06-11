@@ -9,7 +9,7 @@ import { Screen } from '../components/Screen';
 import { StatusBanner } from '../components/StatusBanner';
 import { useAuth } from '../context/AuthContext';
 import { useFarm } from '../context/FarmContext';
-import { askWheaty, buildAdviceRecord, saveRecord } from '../services/api';
+import { askWheatee, buildAdviceRecord, saveRecord } from '../services/api';
 import { RootStackParamList } from '../types';
 import { colors } from '../utils/theme';
 
@@ -17,7 +17,7 @@ type Nav = NativeStackNavigationProp<RootStackParamList>;
 const isProductionApp = process.env.EXPO_PUBLIC_APP_ENV === 'production';
 
 type ChatMessage = {
-  role: 'farmer' | 'wheaty';
+  role: 'farmer' | 'wheatee';
   text: string;
 };
 
@@ -27,7 +27,7 @@ export function ChatScreen() {
   const { farmProfile } = useFarm();
   const [text, setText] = useState(isProductionApp ? '' : 'How can I increase wheat yield on my farm?');
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'wheaty', text: 'Send a question about wheat health, yield, planning, or records.' },
+    { role: 'wheatee', text: 'Send a question about wheat health, yield, planning, or records.' },
   ]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,12 +41,12 @@ export function ChatScreen() {
     setError(null);
 
     try {
-      const result = await askWheaty({ text: input, userId: user.userId, farmProfile });
+      const result = await askWheatee({ text: input, userId: user.userId, farmProfile });
       const record = buildAdviceRecord(user.userId, input, result);
-      setMessages((current) => [...current, { role: 'wheaty', text: record.response }]);
+      setMessages((current) => [...current, { role: 'wheatee', text: record.response }]);
       await saveRecord(record);
     } catch {
-      setError('Wheaty could not process that question. Check the backend URL or try again.');
+      setError('Wheatee could not process that question. Check the backend URL or try again.');
     } finally {
       setLoading(false);
     }
@@ -67,7 +67,7 @@ export function ChatScreen() {
           <TextInput
             value={text}
             onChangeText={setText}
-            placeholder="Ask Wheaty..."
+            placeholder="Ask Wheatee..."
             multiline
             style={styles.input}
           />

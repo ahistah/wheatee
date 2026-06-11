@@ -2,6 +2,7 @@ import { afterEach, describe, expect, test } from 'bun:test';
 
 const managedEnvKeys = [
   'NODE_ENV',
+  'MONGO_URI',
   'SUPABASE_URL',
   'SUPABASE_SERVICE_ROLE_KEY',
   'FIREBASE_SERVICE_ACCOUNT_JSON',
@@ -41,18 +42,16 @@ describe('production configuration gates', () => {
     const { validateProductionConfig } = await importConfigWithEnv({ NODE_ENV: 'production' });
 
     expect(() => validateProductionConfig()).toThrow(
-      'Missing production configuration: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, FIREBASE_SERVICE_ACCOUNT_JSON, VERTEX_PROJECT_ID, GCS_BUCKET, SPEECH_PROJECT_ID or VERTEX_PROJECT_ID',
+      'Missing production configuration: MONGO_URI, VERTEX_PROJECT_ID, GCS_BUCKET, SPEECH_PROJECT_ID or VERTEX_PROJECT_ID',
     );
   });
 
   test('accepts production startup when required services are configured', async () => {
     const { allowFallbacks, validateProductionConfig } = await importConfigWithEnv({
       NODE_ENV: 'production',
-      SUPABASE_URL: 'https://example.supabase.co',
-      SUPABASE_SERVICE_ROLE_KEY: 'service-role-key',
-      FIREBASE_SERVICE_ACCOUNT_JSON: '{"project_id":"wheaty"}',
-      VERTEX_PROJECT_ID: 'wheaty-prod',
-      GCS_BUCKET: 'wheaty-crop-images',
+      MONGO_URI: 'mongodb+srv://example.mongodb.net/wheatee',
+      VERTEX_PROJECT_ID: 'wheatee-prod',
+      GCS_BUCKET: 'wheatee-crop-images',
     });
 
     expect(allowFallbacks()).toBe(false);

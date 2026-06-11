@@ -21,7 +21,7 @@ healthRouter.get('/health', (_req, res) => {
   res.json({
     ok: true,
     ready,
-    service: 'wheaty-api',
+    service: 'wheatee-api',
     mode: isAiConfigured() ? 'ai' : 'fallback',
     environment: config.nodeEnv,
     mongo: Boolean(config.mongoUri),

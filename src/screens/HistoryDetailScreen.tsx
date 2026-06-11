@@ -39,7 +39,7 @@ export function HistoryDetailScreen({ navigation, route }: Props) {
         <Text style={styles.copy}>{record.input}</Text>
       </InfoCard>
 
-      <InfoCard title="Wheaty response" icon="sparkles">
+      <InfoCard title="Wheatee response" icon="sparkles">
         <Text style={styles.copy}>{record.response}</Text>
       </InfoCard>
 

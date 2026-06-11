@@ -6,7 +6,7 @@ const app = createApp();
 validateProductionConfig();
 
 const server = app.listen(config.port, () => {
-  console.log(`Wheaty API listening on ${config.port}`);
+  console.log(`Wheatee API listening on ${config.port}`);
 });
 
 for (const signal of ['SIGINT', 'SIGTERM']) {

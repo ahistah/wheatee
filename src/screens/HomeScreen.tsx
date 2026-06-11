@@ -30,7 +30,7 @@ export function HomeScreen() {
   return (
     <Screen>
       <View style={styles.header}>
-        <Text style={styles.kicker}>Ask Wheaty</Text>
+        <Text style={styles.kicker}>Ask Wheatee</Text>
         <Text style={styles.title}>Good field decisions, saved to farm memory.</Text>
         <Text style={styles.subtitle}>
           {farmProfile

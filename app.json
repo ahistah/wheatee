@@ -1,24 +1,24 @@
 {
   "expo": {
-    "name": "Wheaty",
-    "slug": "wheaty",
+    "name": "Wheatee",
+    "slug": "wheatee",
     "description": "AI-powered wheat farming assistant for crop diagnosis, farm planning, voice questions, mapped farm profiles, and farm memory.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "scheme": "wheaty",
+    "scheme": "wheatee",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app.wheaty.mobile",
+      "bundleIdentifier": "app.wheatee.mobile",
       "infoPlist": {
-        "NSCameraUsageDescription": "Wheaty uses the camera to capture crop images for disease diagnosis.",
-        "NSMicrophoneUsageDescription": "Wheaty uses the microphone to record farmer questions for agronomy advice.",
-        "NSPhotoLibraryUsageDescription": "Wheaty uses photo library access so farmers can select crop images for diagnosis."
+        "NSCameraUsageDescription": "Wheatee uses the camera to capture crop images for disease diagnosis.",
+        "NSMicrophoneUsageDescription": "Wheatee uses the microphone to record farmer questions for agronomy advice.",
+        "NSPhotoLibraryUsageDescription": "Wheatee uses photo library access so farmers can select crop images for diagnosis."
       }
     },
     "android": {
-      "package": "app.wheaty.mobile",
+      "package": "app.wheatee.mobile",
       "versionCode": 1,
       "permissions": [
         "CAMERA",
@@ -42,14 +42,14 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Wheaty uses photo library access so farmers can select crop images for disease diagnosis.",
-          "cameraPermission": "Wheaty uses the camera to capture crop images for disease diagnosis."
+          "photosPermission": "Wheatee uses photo library access so farmers can select crop images for disease diagnosis.",
+          "cameraPermission": "Wheatee uses the camera to capture crop images for disease diagnosis."
         }
       ],
       [
         "expo-av",
         {
-          "microphonePermission": "Wheaty uses the microphone to record farmer questions for agronomy advice."
+          "microphonePermission": "Wheatee uses the microphone to record farmer questions for agronomy advice."
         }
       ]
     ],

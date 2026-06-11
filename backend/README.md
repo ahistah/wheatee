@@ -1,6 +1,6 @@
-# Wheaty API
+# Wheatee API
 
-Cloud Run-ready backend for the Wheaty Expo app.
+Cloud Run-ready backend for the Wheatee Expo app.
 
 ## Run
 
@@ -16,15 +16,15 @@ Health check:
 curl http://localhost:8080/health
 ```
 
-`ok: true` means the HTTP server is alive. `ready: true` means Supabase, Firebase, Vertex AI, GCS, and Speech-to-Text configuration are all present for production operation. In non-production runs, `missingConfig` is hidden so local development can use fallbacks without noisy status output.
+`ok: true` means the HTTP server is alive. `ready: true` means MongoDB, Vertex AI, GCS, and Speech-to-Text configuration are all present for production operation. In non-production runs, `missingConfig` is hidden so local development can use fallbacks without noisy status output.
 
-Seed the `knowledge_base` collection when Supabase is configured:
+Seed the `knowledge_base` collection when MongoDB is configured:
 
 ```bash
 bun run seed:knowledge
 ```
 
-With `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, the command seeds Supabase. Without database env vars, it verifies the in-memory seed set used only for local development.
+With `MONGO_URI`, the command seeds MongoDB. Without database env vars, it verifies the in-memory seed set used only for local development.
 
 ## Endpoints
 
@@ -62,26 +62,15 @@ After deployment, verify the deployed API is production-ready:
 WHEATY_API_URL=https://your-cloud-run-url bun run check:health
 ```
 
-Run `supabase/schema.sql` in the Supabase SQL editor before deploying.
+MongoDB is the production database for this build. Supabase support remains in the codebase as an optional adapter, but production readiness checks require MongoDB.
 
-Set `SUPABASE_SERVICE_ROLE_KEY` and `FIREBASE_SERVICE_ACCOUNT_JSON` as Cloud Run secrets in production. Supabase is the production database; MongoDB support is retained only as a migration/development adapter.
+`cloudrun.env` should contain the production `MONGO_URI` value and the target `MONGO_DB_NAME`.
 
-`cloudrun.env` should contain the secret names, not the secret values:
+The deploy script runs `scripts/check-cloud-run-config.sh` and sets `NODE_ENV=production` with the configured `MONGO_URI`.
 
-```bash
-SUPABASE_SERVICE_ROLE_KEY_SECRET=wheaty-supabase-service-role-key
-FIREBASE_SERVICE_ACCOUNT_JSON_SECRET=wheaty-firebase-service-account-json
-```
+Production startup requires MongoDB, Vertex AI, Speech-to-Text, and GCS configuration. Fallback responses are disabled when `NODE_ENV=production`, and crop image diagnosis fails closed if image upload to GCS is unavailable.
 
-The deploy script runs `scripts/check-cloud-run-config.sh`, sets `NODE_ENV=production`, and mounts those secrets into Cloud Run as `SUPABASE_SERVICE_ROLE_KEY` and `FIREBASE_SERVICE_ACCOUNT_JSON`.
-
-Production startup requires Supabase, Firebase, Vertex AI, Speech-to-Text, and GCS configuration. Fallback responses are disabled when `NODE_ENV=production`, and crop image diagnosis fails closed if image upload to GCS is unavailable.
-
-When `FIREBASE_SERVICE_ACCOUNT_JSON` is set, farmer-data endpoints must include:
-
-```text
-Authorization: Bearer <Firebase ID token>
-```
+User authentication is disabled for this build. Farmer-data endpoints accept the `userId` supplied by the mobile app's local farmer session.
 
 Public operational endpoints remain unauthenticated for monitoring/tool inspection:
 
