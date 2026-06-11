@@ -1,0 +1,48 @@
+apiVersion: serving.knative.dev/v1
+kind: Revision
+metadata:
+  annotations:
+    autoscaling.knative.dev/maxScale: '3'
+    run.googleapis.com/build-source-location: '{"wheatee-api-1":"gs://run-sources-wheaty-hackathon-498716-us-central1/services/wheatee-api/1781090141.945468-b4e3af52e0824b218dbb2a8908796ae1.zip#1781090446747262"}'
+    run.googleapis.com/startup-cpu-boost: 'true'
+  labels:
+    client.knative.dev/nonce: xigfatdrzw
+    cloud.googleapis.com/location: us-central1
+    run.googleapis.com/startupProbeType: Default
+    serving.knative.dev/configuration: wheatee-api
+    serving.knative.dev/configurationGeneration: '18'
+    serving.knative.dev/route: wheatee-api
+    serving.knative.dev/service: wheatee-api
+    serving.knative.dev/serviceUid: fa1add08-130a-4e9b-ab24-aabd28ca5348
+  name: wheatee-api-00018-sq5
+  namespace: '1015273551155'
+  ownerReferences:
+  - apiVersion: serving.knative.dev/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Configuration
+    name: wheatee-api
+    uid: 7128763c-13da-489e-94e1-1e2c6251f7b9
+spec:
+  containerConcurrency: 80
+  containers:
+  - env:
+    - name: GOOGLE_API_KEY
+      value: AQ.Ab8RN6JVVnQx32NFuf7z80GZCpIfC47W1TLHwdkRs_EQW0u09Q
+    image: us-central1-docker.pkg.dev/wheaty-hackathon-498716/cloud-run-source-deploy/wheatee-api@sha256:1798ef7098ac794ce34b6c2cf5f93de945ecac0be51a9449dbb1310ffa19d8ec
+    name: wheatee-api-1
+    ports:
+    - containerPort: 8080
+      name: http1
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 512Mi
+    startupProbe:
+      failureThreshold: 1
+      periodSeconds: 240
+      tcpSocket:
+        port: 8080
+      timeoutSeconds: 240
+  serviceAccountName: 1015273551155-compute@developer.gserviceaccount.com
+  timeoutSeconds: 300

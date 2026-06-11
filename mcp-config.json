@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@mongodb-js/mongodb-mcp-server"],
+      "env": {
+        "MDB_MCP_CONNECTION_STRING": "mongodb+srv://younassadat05_db_user:GQDR8nnBs2NPK3EL@wheatee-cluster.ayneck3.mongodb.net/wheatee_db?appName=wheatee-cluster"
+      }
+    }
+  }
+}

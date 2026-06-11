@@ -1,0 +1,931 @@
+node_modules\@google\genai\dist\genai.d.ts:     GenerateContentResponse.automatic_function_calling_history.
+node_modules\@google\genai\dist\genai.d.ts:    private createInlinedGenerateContentRequest;
+node_modules\@google\genai\dist\genai.d.ts:     per line. The responses will be GenerateContentResponse messages formatted
+node_modules\@google\genai\dist\genai.d.ts:/** Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This enum is not supported in Vertex AI. */
+node_modules\@google\genai\dist\genai.d.ts:    constructor(apiClient: ApiClient, modelsModule: Models, model: string, config?: types.GenerateContentConfig, history?: types.Content[]);
+node_modules\@google\genai\dist\genai.d.ts:    sendMessage(params: types.SendMessageParameters): Promise<types.GenerateContentResponse>;
+node_modules\@google\genai\dist\genai.d.ts:    sendMessageStream(params: types.SendMessageParameters): Promise<AsyncGenerator<types.GenerateContentResponse>>;
+node_modules\@google\genai\dist\genai.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\genai.d.ts:    /** Optional. Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This field is not supported in Vertex AI. */
+node_modules\@google\genai\dist\genai.d.ts:export declare interface GenerateContentConfig {
+node_modules\@google\genai\dist\genai.d.ts:export declare interface GenerateContentParameters {
+node_modules\@google\genai\dist\genai.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\genai.d.ts:/** Response message for PredictionService.GenerateContent. */
+node_modules\@google\genai\dist\genai.d.ts:export declare class GenerateContentResponse {
+node_modules\@google\genai\dist\genai.d.ts:    promptFeedback?: GenerateContentResponsePromptFeedback;
+node_modules\@google\genai\dist\genai.d.ts:    usageMetadata?: GenerateContentResponseUsageMetadata;
+node_modules\@google\genai\dist\genai.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\genai.d.ts:     *  const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\genai.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\genai.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\genai.d.ts:export declare class GenerateContentResponsePromptFeedback {
+node_modules\@google\genai\dist\genai.d.ts:export declare class GenerateContentResponseUsageMetadata {
+node_modules\@google\genai\dist\genai.d.ts:/** The image generation configuration to be used in GenerateContentConfig. */
+node_modules\@google\genai\dist\genai.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\genai.d.ts:    response?: GenerateContentResponse;
+node_modules\@google\genai\dist\genai.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\genai.d.ts: Note that in the unary and server-streaming GenerateContent APIs function
+node_modules\@google\genai\dist\genai.d.ts: GenerateContent APIs function calling happens over this dedicated set of
+node_modules\@google\genai\dist\genai.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\genai.d.ts:/** Sent in response to a `LiveGenerateContentSetup` message from the client. */
+node_modules\@google\genai\dist\genai.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\genai.d.ts:    generateContent: (params: types.GenerateContentParameters) => Promise<types.GenerateContentResponse>;
+node_modules\@google\genai\dist\genai.d.ts:     * This logic is needed for GenerateContentConfig only.
+node_modules\@google\genai\dist\genai.d.ts:     * Previously we made GenerateContentConfig.responseSchema field to accept
+node_modules\@google\genai\dist\genai.d.ts:     * const response = await ai.models.generateContentStream({
+node_modules\@google\genai\dist\genai.d.ts:    generateContentStream: (params: types.GenerateContentParameters) => Promise<AsyncGenerator<types.GenerateContentResponse>>;
+node_modules\@google\genai\dist\genai.d.ts:    private generateContentInternal;
+node_modules\@google\genai\dist\genai.d.ts:    private generateContentStreamInternal;
+node_modules\@google\genai\dist\genai.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\genai.d.ts: instructions and `BidiGenerateContentSetup.prefix_turns` will not be
+node_modules\@google\genai\dist\genai.d.ts:        GenerateContentConfig,
+node_modules\@google\genai\dist\genai.d.ts:        GenerateContentParameters,
+node_modules\@google\genai\dist\genai.d.ts:        GenerateContentResponsePromptFeedback,
+node_modules\@google\genai\dist\genai.d.ts:        GenerateContentResponseUsageMetadata,
+node_modules\@google\genai\dist\genai.d.ts:        GenerateContentResponse,
+node_modules\@google\genai\dist\node\node.d.ts:     GenerateContentResponse.automatic_function_calling_history.
+node_modules\@google\genai\dist\node\node.d.ts:    private createInlinedGenerateContentRequest;
+node_modules\@google\genai\dist\node\node.d.ts:     per line. The responses will be GenerateContentResponse messages formatted
+node_modules\@google\genai\dist\node\node.d.ts:/** Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This enum is not supported in Vertex AI. */
+node_modules\@google\genai\dist\node\node.d.ts:    constructor(apiClient: ApiClient, modelsModule: Models, model: string, config?: types.GenerateContentConfig, history?: types.Content[]);
+node_modules\@google\genai\dist\node\node.d.ts:    sendMessage(params: types.SendMessageParameters): Promise<types.GenerateContentResponse>;
+node_modules\@google\genai\dist\node\node.d.ts:    sendMessageStream(params: types.SendMessageParameters): Promise<AsyncGenerator<types.GenerateContentResponse>>;
+node_modules\@google\genai\dist\node\node.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\node\node.d.ts:    /** Optional. Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This field is not supported in Vertex AI. */
+node_modules\@google\genai\dist\node\node.d.ts:export declare interface GenerateContentConfig {
+node_modules\@google\genai\dist\node\node.d.ts:export declare interface GenerateContentParameters {
+node_modules\@google\genai\dist\node\node.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\node\node.d.ts:/** Response message for PredictionService.GenerateContent. */
+node_modules\@google\genai\dist\node\node.d.ts:export declare class GenerateContentResponse {
+node_modules\@google\genai\dist\node\node.d.ts:    promptFeedback?: GenerateContentResponsePromptFeedback;
+node_modules\@google\genai\dist\node\node.d.ts:    usageMetadata?: GenerateContentResponseUsageMetadata;
+node_modules\@google\genai\dist\node\node.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\node\node.d.ts:     *  const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\node\node.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\node\node.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\node\node.d.ts:export declare class GenerateContentResponsePromptFeedback {
+node_modules\@google\genai\dist\node\node.d.ts:export declare class GenerateContentResponseUsageMetadata {
+node_modules\@google\genai\dist\node\node.d.ts:/** The image generation configuration to be used in GenerateContentConfig. */
+node_modules\@google\genai\dist\node\node.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\node\node.d.ts:    response?: GenerateContentResponse;
+node_modules\@google\genai\dist\node\node.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\node\node.d.ts: Note that in the unary and server-streaming GenerateContent APIs function
+node_modules\@google\genai\dist\node\node.d.ts: GenerateContent APIs function calling happens over this dedicated set of
+node_modules\@google\genai\dist\node\node.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\node\node.d.ts:/** Sent in response to a `LiveGenerateContentSetup` message from the client. */
+node_modules\@google\genai\dist\node\node.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\node\node.d.ts:    generateContent: (params: types.GenerateContentParameters) => Promise<types.GenerateContentResponse>;
+node_modules\@google\genai\dist\node\node.d.ts:     * This logic is needed for GenerateContentConfig only.
+node_modules\@google\genai\dist\node\node.d.ts:     * Previously we made GenerateContentConfig.responseSchema field to accept
+node_modules\@google\genai\dist\node\node.d.ts:     * const response = await ai.models.generateContentStream({
+node_modules\@google\genai\dist\node\node.d.ts:    generateContentStream: (params: types.GenerateContentParameters) => Promise<AsyncGenerator<types.GenerateContentResponse>>;
+node_modules\@google\genai\dist\node\node.d.ts:    private generateContentInternal;
+node_modules\@google\genai\dist\node\node.d.ts:    private generateContentStreamInternal;
+node_modules\@google\genai\dist\node\node.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\node\node.d.ts: instructions and `BidiGenerateContentSetup.prefix_turns` will not be
+node_modules\@google\genai\dist\node\node.d.ts:        GenerateContentConfig,
+node_modules\@google\genai\dist\node\node.d.ts:        GenerateContentParameters,
+node_modules\@google\genai\dist\node\node.d.ts:        GenerateContentResponsePromptFeedback,
+node_modules\@google\genai\dist\node\node.d.ts:        GenerateContentResponseUsageMetadata,
+node_modules\@google\genai\dist\node\node.d.ts:        GenerateContentResponse,
+node_modules\@google\genai\dist\tokenizer\node.d.ts:/** Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This enum is not supported in Vertex AI. */
+node_modules\@google\genai\dist\tokenizer\node.d.ts:    /** Optional. Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This field is not supported in Vertex AI. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:     GenerateContentResponse.automatic_function_calling_history.
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:     per line. The responses will be GenerateContentResponse messages formatted
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:/** Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This enum is not supported in Vertex AI. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    /** Optional. Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This field is not supported in Vertex AI. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:declare interface GenerateContentConfig {
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:declare interface GenerateContentParameters {
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:/** Response message for PredictionService.GenerateContent. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:declare class GenerateContentResponse {
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    promptFeedback?: GenerateContentResponsePromptFeedback;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    usageMetadata?: GenerateContentResponseUsageMetadata;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:     *  const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:declare class GenerateContentResponsePromptFeedback {
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:declare class GenerateContentResponseUsageMetadata {
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:/** The image generation configuration to be used in GenerateContentConfig. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    response?: GenerateContentResponse;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts: Note that in the unary and server-streaming GenerateContent APIs function
+node_modules\@google\genai\dist\vertex_internal\index.d.ts: GenerateContent APIs function calling happens over this dedicated set of
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:/** Sent in response to a `LiveGenerateContentSetup` message from the client. */
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\vertex_internal\index.d.ts: instructions and `BidiGenerateContentSetup.prefix_turns` will not be
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:        GenerateContentConfig,
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:        GenerateContentParameters,
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:        GenerateContentResponsePromptFeedback,
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:        GenerateContentResponseUsageMetadata,
+node_modules\@google\genai\dist\vertex_internal\index.d.ts:        GenerateContentResponse,
+node_modules\@google\genai\dist\vertex_internal\index.js:/** Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This enum is not supported in Vertex AI. */
+node_modules\@google\genai\dist\web\web.d.ts:     GenerateContentResponse.automatic_function_calling_history.
+node_modules\@google\genai\dist\web\web.d.ts:    private createInlinedGenerateContentRequest;
+node_modules\@google\genai\dist\web\web.d.ts:     per line. The responses will be GenerateContentResponse messages formatted
+node_modules\@google\genai\dist\web\web.d.ts:/** Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This enum is not supported in Vertex AI. */
+node_modules\@google\genai\dist\web\web.d.ts:    constructor(apiClient: ApiClient, modelsModule: Models, model: string, config?: types.GenerateContentConfig, history?: types.Content[]);
+node_modules\@google\genai\dist\web\web.d.ts:    sendMessage(params: types.SendMessageParameters): Promise<types.GenerateContentResponse>;
+node_modules\@google\genai\dist\web\web.d.ts:    sendMessageStream(params: types.SendMessageParameters): Promise<AsyncGenerator<types.GenerateContentResponse>>;
+node_modules\@google\genai\dist\web\web.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\web\web.d.ts:    /** Optional. Specifies the function Behavior. Currently only supported by the BidiGenerateContent method. This field is not supported in Vertex AI. */
+node_modules\@google\genai\dist\web\web.d.ts:export declare interface GenerateContentConfig {
+node_modules\@google\genai\dist\web\web.d.ts:export declare interface GenerateContentParameters {
+node_modules\@google\genai\dist\web\web.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\web\web.d.ts:/** Response message for PredictionService.GenerateContent. */
+node_modules\@google\genai\dist\web\web.d.ts:export declare class GenerateContentResponse {
+node_modules\@google\genai\dist\web\web.d.ts:    promptFeedback?: GenerateContentResponsePromptFeedback;
+node_modules\@google\genai\dist\web\web.d.ts:    usageMetadata?: GenerateContentResponseUsageMetadata;
+node_modules\@google\genai\dist\web\web.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\web\web.d.ts:     *  const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\web\web.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\web\web.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\web\web.d.ts:export declare class GenerateContentResponsePromptFeedback {
+node_modules\@google\genai\dist\web\web.d.ts:export declare class GenerateContentResponseUsageMetadata {
+node_modules\@google\genai\dist\web\web.d.ts:/** The image generation configuration to be used in GenerateContentConfig. */
+node_modules\@google\genai\dist\web\web.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\web\web.d.ts:    response?: GenerateContentResponse;
+node_modules\@google\genai\dist\web\web.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\web\web.d.ts: Note that in the unary and server-streaming GenerateContent APIs function
+node_modules\@google\genai\dist\web\web.d.ts: GenerateContent APIs function calling happens over this dedicated set of
+node_modules\@google\genai\dist\web\web.d.ts:    /** Configures the realtime input behavior in BidiGenerateContent. */
+node_modules\@google\genai\dist\web\web.d.ts:/** Sent in response to a `LiveGenerateContentSetup` message from the client. */
+node_modules\@google\genai\dist\web\web.d.ts:     * const response = await ai.models.generateContent({
+node_modules\@google\genai\dist\web\web.d.ts:    generateContent: (params: types.GenerateContentParameters) => Promise<types.GenerateContentResponse>;
+node_modules\@google\genai\dist\web\web.d.ts:     * This logic is needed for GenerateContentConfig only.
+node_modules\@google\genai\dist\web\web.d.ts:     * Previously we made GenerateContentConfig.responseSchema field to accept
+node_modules\@google\genai\dist\web\web.d.ts:     * const response = await ai.models.generateContentStream({
+node_modules\@google\genai\dist\web\web.d.ts:    generateContentStream: (params: types.GenerateContentParameters) => Promise<AsyncGenerator<types.GenerateContentResponse>>;
+node_modules\@google\genai\dist\web\web.d.ts:    private generateContentInternal;
+node_modules\@google\genai\dist\web\web.d.ts:    private generateContentStreamInternal;
+node_modules\@google\genai\dist\web\web.d.ts:    config?: GenerateContentConfig;
+node_modules\@google\genai\dist\web\web.d.ts: instructions and `BidiGenerateContentSetup.prefix_turns` will not be
+node_modules\@google\genai\dist\web\web.d.ts:        GenerateContentConfig,
+node_modules\@google\genai\dist\web\web.d.ts:        GenerateContentParameters,
+node_modules\@google\genai\dist\web\web.d.ts:        GenerateContentResponsePromptFeedback,
+node_modules\@google\genai\dist\web\web.d.ts:        GenerateContentResponseUsageMetadata,
+node_modules\@google\genai\dist\web\web.d.ts:        GenerateContentResponse,
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:     * {@link GenerateContentResult}.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    sendMessage(request: string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:     * {@link GenerateContentStreamResult} containing an iterable stream
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    sendMessageStream(request: string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * Citation metadata that may be found on a {@link GenerateContentCandidate}.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * {@link GenerateContentRequest}, but not both. If both are provided
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    generateContentRequest?: GenerateContentRequest;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    generateContentRequest?: _GenerateContentRequestInternal;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface EnhancedGenerateContentResponse extends GenerateContentResponse {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * A candidate returned as part of a {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface GenerateContentCandidate {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * Request sent to `generateContent` endpoint.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface GenerateContentRequest extends BaseParams {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * Request sent to `generateContent` endpoint.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface _GenerateContentRequestInternal extends GenerateContentRequest {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * Individual response from {@link GenerativeModel.generateContent} and
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * {@link GenerativeModel.generateContentStream}.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * `generateContentStream()` will return one in each chunk until
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface GenerateContentResponse {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    candidates?: GenerateContentCandidate[];
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * Result object returned from generateContent() call.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface GenerateContentResult {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    response: EnhancedGenerateContentResponse;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * Result object returned from generateContentStream() call.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:export declare interface GenerateContentStreamResult {
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    stream: AsyncGenerator<EnhancedGenerateContentResponse>;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    response: Promise<EnhancedGenerateContentResponse>;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:     * and returns an object containing a single {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    generateContent(request: GenerateContentRequest | string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts:    generateContentStream(request: GenerateContentRequest | string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\generative-ai.d.ts: * A safety rating associated with a {@link GenerateContentCandidate}
+node_modules\@google\generative-ai\dist\index.js:    Task["GENERATE_CONTENT"] = "generateContent";
+node_modules\@google\generative-ai\dist\index.js:    Task["STREAM_GENERATE_CONTENT"] = "streamGenerateContent";
+node_modules\@google\generative-ai\dist\index.js: * chunks (as long as each chunk is a complete GenerateContentResponse JSON).
+node_modules\@google\generative-ai\dist\index.js: * iterator that provides one complete GenerateContentResponse at a time
+node_modules\@google\generative-ai\dist\index.js: * GenerateContentResponse.
+node_modules\@google\generative-ai\dist\index.js: * GenerateContentResponse in each iteration.
+node_modules\@google\generative-ai\dist\index.js: * Aggregates an array of `GenerateContentResponse`s into a single
+node_modules\@google\generative-ai\dist\index.js: * GenerateContentResponse.
+node_modules\@google\generative-ai\dist\index.js:async function generateContentStream(apiKey, model, params, requestOptions) {
+node_modules\@google\generative-ai\dist\index.js:async function generateContent(apiKey, model, params, requestOptions) {
+node_modules\@google\generative-ai\dist\index.js:    let formattedGenerateContentRequest = {
+node_modules\@google\generative-ai\dist\index.js:    const containsGenerateContentRequest = params.generateContentRequest != null;
+node_modules\@google\generative-ai\dist\index.js:        if (containsGenerateContentRequest) {
+node_modules\@google\generative-ai\dist\index.js:            throw new GoogleGenerativeAIRequestInputError("CountTokensRequest must have one of contents or generateContentRequest, not both.");
+node_modules\@google\generative-ai\dist\index.js:        formattedGenerateContentRequest.contents = params.contents;
+node_modules\@google\generative-ai\dist\index.js:    else if (containsGenerateContentRequest) {
+node_modules\@google\generative-ai\dist\index.js:        formattedGenerateContentRequest = Object.assign(Object.assign({}, formattedGenerateContentRequest), params.generateContentRequest);
+node_modules\@google\generative-ai\dist\index.js:        formattedGenerateContentRequest.contents = [content];
+node_modules\@google\generative-ai\dist\index.js:    return { generateContentRequest: formattedGenerateContentRequest };
+node_modules\@google\generative-ai\dist\index.js:function formatGenerateContentInput(params) {
+node_modules\@google\generative-ai\dist\index.js:     * {@link GenerateContentResult}.
+node_modules\@google\generative-ai\dist\index.js:        const generateContentRequest = {
+node_modules\@google\generative-ai\dist\index.js:            .then(() => generateContent(this._apiKey, this.model, generateContentRequest, chatSessionRequestOptions))
+node_modules\@google\generative-ai\dist\index.js:     * {@link GenerateContentStreamResult} containing an iterable stream
+node_modules\@google\generative-ai\dist\index.js:        const generateContentRequest = {
+node_modules\@google\generative-ai\dist\index.js:        const streamPromise = generateContentStream(this._apiKey, this.model, generateContentRequest, chatSessionRequestOptions);
+node_modules\@google\generative-ai\dist\index.js:     * and returns an object containing a single {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\index.js:    async generateContent(request, requestOptions = {}) {
+node_modules\@google\generative-ai\dist\index.js:        const formattedParams = formatGenerateContentInput(request);
+node_modules\@google\generative-ai\dist\index.js:        return generateContent(this.apiKey, this.model, Object.assign({ generationConfig: this.generationConfig, safetySettings: this.safetySettings, tools: this.tools, toolConfig: this.toolConfig, systemInstruction: this.systemInstruction, cachedContent: (_a = this.cachedContent) === null || _a === void 0 ? void 0 : _a.name }, formattedParams), generativeModelRequestOptions);
+node_modules\@google\generative-ai\dist\index.js:    async generateContentStream(request, requestOptions = {}) {
+node_modules\@google\generative-ai\dist\index.js:        const formattedParams = formatGenerateContentInput(request);
+node_modules\@google\generative-ai\dist\index.js:        return generateContentStream(this.apiKey, this.model, Object.assign({ generationConfig: this.generationConfig, safetySettings: this.safetySettings, tools: this.tools, toolConfig: this.toolConfig, systemInstruction: this.systemInstruction, cachedContent: (_a = this.cachedContent) === null || _a === void 0 ? void 0 : _a.name }, formattedParams), generativeModelRequestOptions);
+node_modules\@google\generative-ai\dist\server\index.js:    Task["GENERATE_CONTENT"] = "generateContent";
+node_modules\@google\generative-ai\dist\server\index.js:    Task["STREAM_GENERATE_CONTENT"] = "streamGenerateContent";
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session-helpers.d.ts:import { Content, GenerateContentResponse } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session-helpers.d.ts:export declare function isValidResponse(response: GenerateContentResponse): boolean;
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session.d.ts:import { Content, GenerateContentResult, GenerateContentStreamResult, Part, RequestOptions, SingleRequestOptions, StartChatParams } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session.d.ts:     * {@link GenerateContentResult}.
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session.d.ts:    sendMessage(request: string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session.d.ts:     * {@link GenerateContentStreamResult} containing an iterable stream
+node_modules\@google\generative-ai\dist\server\src\methods\chat-session.d.ts:    sendMessageStream(request: string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\server\src\methods\generate-content.d.ts:import { GenerateContentRequest, GenerateContentResult, GenerateContentStreamResult, SingleRequestOptions } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\methods\generate-content.d.ts:export declare function generateContentStream(apiKey: string, model: string, params: GenerateContentRequest, requestOptions: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\server\src\methods\generate-content.d.ts:export declare function generateContent(apiKey: string, model: string, params: GenerateContentRequest, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\server\src\models\generative-model.d.ts:import { BatchEmbedContentsRequest, BatchEmbedContentsResponse, CachedContent, Content, CountTokensRequest, CountTokensResponse, EmbedContentRequest, EmbedContentResponse, GenerateContentRequest, GenerateContentResult, GenerateContentStreamResult, GenerationConfig, ModelParams, Part, RequestOptions, SafetySetting, SingleRequestOptions, StartChatParams, Tool, ToolConfig } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\models\generative-model.d.ts:     * and returns an object containing a single {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\server\src\models\generative-model.d.ts:    generateContent(request: GenerateContentRequest | string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\server\src\models\generative-model.d.ts:    generateContentStream(request: GenerateContentRequest | string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\server\src\requests\request-helpers.d.ts:import { Content, CountTokensRequest, EmbedContentRequest, GenerateContentRequest, ModelParams, Part, _CountTokensRequestInternal } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\requests\request-helpers.d.ts:export declare function formatGenerateContentInput(params: GenerateContentRequest | string | Array<string | Part>): GenerateContentRequest;
+node_modules\@google\generative-ai\dist\server\src\requests\request.d.ts:    GENERATE_CONTENT = "generateContent",
+node_modules\@google\generative-ai\dist\server\src\requests\request.d.ts:    STREAM_GENERATE_CONTENT = "streamGenerateContent",
+node_modules\@google\generative-ai\dist\server\src\requests\response-helpers.d.ts:import { EnhancedGenerateContentResponse, FunctionCall, GenerateContentResponse } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\requests\response-helpers.d.ts: * chunks (as long as each chunk is a complete GenerateContentResponse JSON).
+node_modules\@google\generative-ai\dist\server\src\requests\response-helpers.d.ts:export declare function addHelpers(response: GenerateContentResponse): EnhancedGenerateContentResponse;
+node_modules\@google\generative-ai\dist\server\src\requests\response-helpers.d.ts:export declare function getText(response: GenerateContentResponse): string;
+node_modules\@google\generative-ai\dist\server\src\requests\response-helpers.d.ts:export declare function getFunctionCalls(response: GenerateContentResponse): FunctionCall[];
+node_modules\@google\generative-ai\dist\server\src\requests\response-helpers.d.ts:export declare function formatBlockErrorMessage(response: GenerateContentResponse): string;
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts:import { GenerateContentResponse, GenerateContentStreamResult } from "../../types";
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts: * iterator that provides one complete GenerateContentResponse at a time
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts: * GenerateContentResponse.
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts:export declare function processStream(response: Response): GenerateContentStreamResult;
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts: * GenerateContentResponse in each iteration.
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts: * Aggregates an array of `GenerateContentResponse`s into a single
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts: * GenerateContentResponse.
+node_modules\@google\generative-ai\dist\server\src\requests\stream-reader.d.ts:export declare function aggregateResponses(responses: GenerateContentResponse[]): GenerateContentResponse;
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts: * Request sent to `generateContent` endpoint.
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts:export interface GenerateContentRequest extends BaseParams {
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts: * Request sent to `generateContent` endpoint.
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts:export interface _GenerateContentRequestInternal extends GenerateContentRequest {
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts: * {@link GenerateContentRequest}, but not both. If both are provided
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts:    generateContentRequest?: GenerateContentRequest;
+node_modules\@google\generative-ai\dist\server\types\requests.d.ts:    generateContentRequest?: _GenerateContentRequestInternal;
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * Result object returned from generateContent() call.
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:export interface GenerateContentResult {
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:    response: EnhancedGenerateContentResponse;
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * Result object returned from generateContentStream() call.
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:export interface GenerateContentStreamResult {
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:    stream: AsyncGenerator<EnhancedGenerateContentResponse>;
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:    response: Promise<EnhancedGenerateContentResponse>;
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:export interface EnhancedGenerateContentResponse extends GenerateContentResponse {
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * Individual response from {@link GenerativeModel.generateContent} and
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * {@link GenerativeModel.generateContentStream}.
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * `generateContentStream()` will return one in each chunk until
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:export interface GenerateContentResponse {
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:    candidates?: GenerateContentCandidate[];
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * A candidate returned as part of a {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts:export interface GenerateContentCandidate {
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * Citation metadata that may be found on a {@link GenerateContentCandidate}.
+node_modules\@google\generative-ai\dist\server\types\responses.d.ts: * A safety rating associated with a {@link GenerateContentCandidate}
+node_modules\@google\generative-ai\dist\src\methods\chat-session-helpers.d.ts:import { Content, GenerateContentResponse } from "../../types";
+node_modules\@google\generative-ai\dist\src\methods\chat-session-helpers.d.ts:export declare function isValidResponse(response: GenerateContentResponse): boolean;
+node_modules\@google\generative-ai\dist\src\methods\chat-session.d.ts:import { Content, GenerateContentResult, GenerateContentStreamResult, Part, RequestOptions, SingleRequestOptions, StartChatParams } from "../../types";
+node_modules\@google\generative-ai\dist\src\methods\chat-session.d.ts:     * {@link GenerateContentResult}.
+node_modules\@google\generative-ai\dist\src\methods\chat-session.d.ts:    sendMessage(request: string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\src\methods\chat-session.d.ts:     * {@link GenerateContentStreamResult} containing an iterable stream
+node_modules\@google\generative-ai\dist\src\methods\chat-session.d.ts:    sendMessageStream(request: string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\src\methods\generate-content.d.ts:import { GenerateContentRequest, GenerateContentResult, GenerateContentStreamResult, SingleRequestOptions } from "../../types";
+node_modules\@google\generative-ai\dist\src\methods\generate-content.d.ts:export declare function generateContentStream(apiKey: string, model: string, params: GenerateContentRequest, requestOptions: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\src\methods\generate-content.d.ts:export declare function generateContent(apiKey: string, model: string, params: GenerateContentRequest, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\src\models\generative-model.d.ts:import { BatchEmbedContentsRequest, BatchEmbedContentsResponse, CachedContent, Content, CountTokensRequest, CountTokensResponse, EmbedContentRequest, EmbedContentResponse, GenerateContentRequest, GenerateContentResult, GenerateContentStreamResult, GenerationConfig, ModelParams, Part, RequestOptions, SafetySetting, SingleRequestOptions, StartChatParams, Tool, ToolConfig } from "../../types";
+node_modules\@google\generative-ai\dist\src\models\generative-model.d.ts:     * and returns an object containing a single {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\src\models\generative-model.d.ts:    generateContent(request: GenerateContentRequest | string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentResult>;
+node_modules\@google\generative-ai\dist\src\models\generative-model.d.ts:    generateContentStream(request: GenerateContentRequest | string | Array<string | Part>, requestOptions?: SingleRequestOptions): Promise<GenerateContentStreamResult>;
+node_modules\@google\generative-ai\dist\src\requests\request-helpers.d.ts:import { Content, CountTokensRequest, EmbedContentRequest, GenerateContentRequest, ModelParams, Part, _CountTokensRequestInternal } from "../../types";
+node_modules\@google\generative-ai\dist\src\requests\request-helpers.d.ts:export declare function formatGenerateContentInput(params: GenerateContentRequest | string | Array<string | Part>): GenerateContentRequest;
+node_modules\@google\generative-ai\dist\src\requests\request.d.ts:    GENERATE_CONTENT = "generateContent",
+node_modules\@google\generative-ai\dist\src\requests\request.d.ts:    STREAM_GENERATE_CONTENT = "streamGenerateContent",
+node_modules\@google\generative-ai\dist\src\requests\response-helpers.d.ts:import { EnhancedGenerateContentResponse, FunctionCall, GenerateContentResponse } from "../../types";
+node_modules\@google\generative-ai\dist\src\requests\response-helpers.d.ts: * chunks (as long as each chunk is a complete GenerateContentResponse JSON).
+node_modules\@google\generative-ai\dist\src\requests\response-helpers.d.ts:export declare function addHelpers(response: GenerateContentResponse): EnhancedGenerateContentResponse;
+node_modules\@google\generative-ai\dist\src\requests\response-helpers.d.ts:export declare function getText(response: GenerateContentResponse): string;
+node_modules\@google\generative-ai\dist\src\requests\response-helpers.d.ts:export declare function getFunctionCalls(response: GenerateContentResponse): FunctionCall[];
+node_modules\@google\generative-ai\dist\src\requests\response-helpers.d.ts:export declare function formatBlockErrorMessage(response: GenerateContentResponse): string;
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts:import { GenerateContentResponse, GenerateContentStreamResult } from "../../types";
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts: * iterator that provides one complete GenerateContentResponse at a time
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts: * GenerateContentResponse.
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts:export declare function processStream(response: Response): GenerateContentStreamResult;
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts: * GenerateContentResponse in each iteration.
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts: * Aggregates an array of `GenerateContentResponse`s into a single
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts: * GenerateContentResponse.
+node_modules\@google\generative-ai\dist\src\requests\stream-reader.d.ts:export declare function aggregateResponses(responses: GenerateContentResponse[]): GenerateContentResponse;
+node_modules\@google\generative-ai\dist\types\requests.d.ts: * Request sent to `generateContent` endpoint.
+node_modules\@google\generative-ai\dist\types\requests.d.ts:export interface GenerateContentRequest extends BaseParams {
+node_modules\@google\generative-ai\dist\types\requests.d.ts: * Request sent to `generateContent` endpoint.
+node_modules\@google\generative-ai\dist\types\requests.d.ts:export interface _GenerateContentRequestInternal extends GenerateContentRequest {
+node_modules\@google\generative-ai\dist\types\requests.d.ts: * {@link GenerateContentRequest}, but not both. If both are provided
+node_modules\@google\generative-ai\dist\types\requests.d.ts:    generateContentRequest?: GenerateContentRequest;
+node_modules\@google\generative-ai\dist\types\requests.d.ts:    generateContentRequest?: _GenerateContentRequestInternal;
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * Result object returned from generateContent() call.
+node_modules\@google\generative-ai\dist\types\responses.d.ts:export interface GenerateContentResult {
+node_modules\@google\generative-ai\dist\types\responses.d.ts:    response: EnhancedGenerateContentResponse;
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * Result object returned from generateContentStream() call.
+node_modules\@google\generative-ai\dist\types\responses.d.ts:export interface GenerateContentStreamResult {
+node_modules\@google\generative-ai\dist\types\responses.d.ts:    stream: AsyncGenerator<EnhancedGenerateContentResponse>;
+node_modules\@google\generative-ai\dist\types\responses.d.ts:    response: Promise<EnhancedGenerateContentResponse>;
+node_modules\@google\generative-ai\dist\types\responses.d.ts:export interface EnhancedGenerateContentResponse extends GenerateContentResponse {
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * Individual response from {@link GenerativeModel.generateContent} and
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * {@link GenerativeModel.generateContentStream}.
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * `generateContentStream()` will return one in each chunk until
+node_modules\@google\generative-ai\dist\types\responses.d.ts:export interface GenerateContentResponse {
+node_modules\@google\generative-ai\dist\types\responses.d.ts:    candidates?: GenerateContentCandidate[];
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * A candidate returned as part of a {@link GenerateContentResponse}.
+node_modules\@google\generative-ai\dist\types\responses.d.ts:export interface GenerateContentCandidate {
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * Citation metadata that may be found on a {@link GenerateContentCandidate}.
+node_modules\@google\generative-ai\dist\types\responses.d.ts: * A safety rating associated with a {@link GenerateContentCandidate}
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts:import { GenerateContentRequest, GenerateContentResult, GenerationConfig, RequestOptions, SafetySetting, StreamGenerateContentResult, Tool } from '../types/content';
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts: * @param request A GenerateContentRequest object with the request contents.
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts: * @returns The GenerateContentResponse object with the response candidates.
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts:export declare function generateContent(location: string, resourcePath: string, token: Promise<string | null | undefined>, request: GenerateContentRequest | string, apiEndpoint?: string, generationConfig?: GenerationConfig, safetySettings?: SafetySetting[], tools?: Tool[], toolConfig?: ToolConfig, requestOptions?: RequestOptions): Promise<GenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts: * @param {GenerateContentRequest} request - {@link GenerateContentRequest}
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts: * @returns {Promise<StreamGenerateContentResult>} Promise of {@link
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts: *     StreamGenerateContentResult}
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.d.ts:export declare function generateContentStream(location: string, resourcePath: string, token: Promise<string | null | undefined>, request: GenerateContentRequest | string, apiEndpoint?: string, generationConfig?: GenerationConfig, safetySettings?: SafetySetting[], tools?: Tool[], toolConfig?: ToolConfig, requestOptions?: RequestOptions): Promise<StreamGenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:exports.generateContentStream = exports.generateContent = void 0;
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js: * @param request A GenerateContentRequest object with the request contents.
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js: * @returns The GenerateContentResponse object with the response candidates.
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:async function generateContent(location, resourcePath, token, request, apiEndpoint, generationConfig, safetySettings, tools, toolConfig, requestOptions) {
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:    (0, pre_fetch_processing_1.validateGenerateContentRequest)(request);
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:    const generateContentRequest = {
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:        data: generateContentRequest,
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:exports.generateContent = generateContent;
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js: * @param {GenerateContentRequest} request - {@link GenerateContentRequest}
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js: * @returns {Promise<StreamGenerateContentResult>} Promise of {@link
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js: *     StreamGenerateContentResult}
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:async function generateContentStream(location, resourcePath, token, request, apiEndpoint, generationConfig, safetySettings, tools, toolConfig, requestOptions) {
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:    (0, pre_fetch_processing_1.validateGenerateContentRequest)(request);
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:    const generateContentRequest = {
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:        data: generateContentRequest,
+node_modules\@google-cloud\vertexai\build\src\functions\generate_content.js:exports.generateContentStream = generateContentStream;
+node_modules\@google-cloud\vertexai\build\src\functions\index.d.ts:export { generateContent, generateContentStream } from './generate_content';
+node_modules\@google-cloud\vertexai\build\src\functions\index.js:exports.generateContentStream = exports.generateContent = exports.postRequest = exports.countTokens = void 0;
+node_modules\@google-cloud\vertexai\build\src\functions\index.js:Object.defineProperty(exports, "generateContent", { enumerable: true, get: function () { return generate_content_1.generateContent; } });
+node_modules\@google-cloud\vertexai\build\src\functions\index.js:Object.defineProperty(exports, "generateContentStream", { enumerable: true, get: function () { return generate_content_1.generateContentStream; } });
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts:import { CountTokensResponse, GenerateContentResponse, GenerateContentResult, StreamGenerateContentResult } from '../types/content';
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts: * iterator that provides one complete GenerateContentResponse at a time
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts: * GenerateContentResponse.
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts:export declare function processStream(response: Response | undefined): Promise<StreamGenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts: * Aggregates an array of `GenerateContentResponse`s into a single
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts: * GenerateContentResponse.
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts:export declare function aggregateResponses(responses: GenerateContentResponse[]): GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts: * Process model responses from generateContent
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.d.ts:export declare function processUnary(response: Response | undefined): Promise<GenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js: * iterator that provides one complete GenerateContentResponse at a time
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js: * GenerateContentResponse.
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js: * GenerateContentResponse in each iteration.
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js: * Aggregates an array of `GenerateContentResponse`s into a single
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js: * GenerateContentResponse.
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:    const generateContentResponse = response;
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:    if (generateContentResponse.candidates &&
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:        generateContentResponse.candidates.length > 0) {
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:        generateContentResponse.candidates.forEach((candidate, index) => {
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:                generateContentResponse.candidates[index].index = index;
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:                generateContentResponse.candidates[index].content = {};
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:                generateContentResponse.candidates[index].content.role =
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:    return generateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js: * Process model responses from generateContent
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:        const generateContentResponse = addMissingIndexAndRole(responseJson);
+node_modules\@google-cloud\vertexai\build\src\functions\post_fetch_processing.js:            response: generateContentResponse,
+node_modules\@google-cloud\vertexai\build\src\functions\post_request.d.ts:import { GenerateContentRequest, CountTokensRequest, RequestOptions } from '../types/content';
+node_modules\@google-cloud\vertexai\build\src\functions\post_request.d.ts:    data: GenerateContentRequest | CountTokensRequest;
+node_modules\@google-cloud\vertexai\build\src\functions\post_request.js:    // Use server sent events for streamGenerateContent
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.d.ts:import { GenerateContentRequest, GenerationConfig, SafetySetting } from '../types/content';
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.d.ts:export declare function formatContentRequest(request: GenerateContentRequest | string, generationConfig?: GenerationConfig, safetySettings?: SafetySetting[]): GenerateContentRequest;
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.d.ts:export declare function validateGenerateContentRequest(request: GenerateContentRequest): void;
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.d.ts:export declare function getApiVersion(request: GenerateContentRequest): 'v1' | 'v1beta1';
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.d.ts:export declare function hasVertexRagStore(request: GenerateContentRequest): boolean;
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.d.ts:export declare function hasVertexAISearch(request: GenerateContentRequest): boolean;
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.js:exports.hasVertexAISearch = exports.hasVertexRagStore = exports.getApiVersion = exports.validateGenerationConfig = exports.validateGenerateContentRequest = exports.formatContentRequest = void 0;
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.js:function validateGenerateContentRequest(request) {
+node_modules\@google-cloud\vertexai\build\src\functions\pre_fetch_processing.js:exports.validateGenerateContentRequest = validateGenerateContentRequest;
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.d.ts:import { GenerateContentResponse } from '../../types';
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.d.ts: * Returns a generator, used to mock the generateContentStream response
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.d.ts:export declare function testGenerator(): AsyncGenerator<GenerateContentResponse>;
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js: * Returns a generator, used to mock the generateContentStream response
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:describe('generateContent', () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await expectAsync((0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT, TEST_GENERATION_CONFIG, TEST_SAFETY_SETTINGS, TEST_EMPTY_TOOLS, TEST_EMPTY_TOOL_CONFIG, TEST_REQUEST_OPTIONS)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed a string', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, TEST_CHAT_MESSAGE_TEXT, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed a GCS URI', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed safetySettings and generationConfig', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_ENDPOINT_BASE_PATH);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, reqWithEmptyConfigs, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, reqWithEmptyConfigs, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const actualResult = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        expect(types_1.GenerateContentResponseHandler.getFunctionCallsFromCandidate(actualResult.response.candidates[0])).toHaveSize(1);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        expect(types_1.GenerateContentResponseHandler.getFunctionCallsFromCandidate(actualResult.response.candidates[0])).toEqual([
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const actualResult = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        expect(types_1.GenerateContentResponseHandler.getFunctionCallsFromCandidate((_a = actualResult.response.candidates) === null || _a === void 0 ? void 0 : _a[0])).toHaveSize(0);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const actualResult = await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, request, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, request, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContent)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, request, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:describe('generateContentStream', () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await expectAsync((0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT, TEST_GENERATION_CONFIG, TEST_SAFETY_SETTINGS, TEST_EMPTY_TOOLS, TEST_EMPTY_TOOL_CONFIG, TEST_REQUEST_OPTIONS)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed text content', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed a string', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, TEST_API_ENDPOINT, TEST_CHAT_MESSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed multi-part content with a GCS URI', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:    it('returns a GenerateContentResponse when passed multi-part content with base64 data', async () => {
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const resp = await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const result = await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        expect(types_1.GenerateContentResponseHandler.getFunctionCallsFromCandidate(response.candidates[0])).toHaveSize(1);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        expect(types_1.GenerateContentResponseHandler.getFunctionCallsFromCandidate(response.candidates[0])).toEqual([response.candidates[0].content.parts[0].functionCall]);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        const actualResult = await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, req, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        expect(types_1.GenerateContentResponseHandler.getFunctionCallsFromCandidate((_a = response.candidates) === null || _a === void 0 ? void 0 : _a[0])).toHaveSize(0);
+node_modules\@google-cloud\vertexai\build\src\functions\test\functions_test.js:        await (0, generate_content_1.generateContentStream)(TEST_LOCATION, TEST_RESOURCE_PATH, TEST_TOKEN_PROMISE, request, TEST_API_ENDPOINT);
+node_modules\@google-cloud\vertexai\build\src\functions\test\post_fetch_processing_test.js:        const actualResult = await (0, generate_content_1.generateContent)(LOCATION, RESOURCE_PATH, TOKEN, GENERATE_CONTENT_REQUEST);
+node_modules\@google-cloud\vertexai\build\src\functions\test\post_fetch_processing_test.js:        const actualResult = await (0, generate_content_1.generateContent)(LOCATION, RESOURCE_PATH, TOKEN, GENERATE_CONTENT_REQUEST);
+node_modules\@google-cloud\vertexai\build\src\functions\test\post_fetch_processing_test.js:        const actualResult = await (0, generate_content_1.generateContent)(LOCATION, RESOURCE_PATH, TOKEN, GENERATE_CONTENT_REQUEST);
+node_modules\@google-cloud\vertexai\build\src\functions\test\post_fetch_processing_test.js:        await (0, generate_content_1.generateContentStream)(LOCATION, RESOURCE_PATH, TOKEN, GENERATE_CONTENT_REQUEST);
+node_modules\@google-cloud\vertexai\build\src\functions\test\pre_fetch_processing_test.js:        expect(() => (0, pre_fetch_processing_1.validateGenerateContentRequest)({ tools: [TOOL1], contents: [] })).not.toThrow();
+node_modules\@google-cloud\vertexai\build\src\functions\test\pre_fetch_processing_test.js:        expect(() => (0, pre_fetch_processing_1.validateGenerateContentRequest)({ tools: [TOOL2], contents: [] })).not.toThrow();
+node_modules\@google-cloud\vertexai\build\src\functions\test\pre_fetch_processing_test.js:        expect(() => (0, pre_fetch_processing_1.validateGenerateContentRequest)({ tools: [TOOL1, TOOL2], contents: [] })).toThrowError(VALID_TOOL_ERROR_MESSAGE);
+node_modules\@google-cloud\vertexai\build\src\functions\test\pre_fetch_processing_test.js:        expect(() => (0, pre_fetch_processing_1.validateGenerateContentRequest)({ tools: [TOOL3], contents: [] })).toThrowError(VALID_TOOL_ERROR_MESSAGE);
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:import { CountTokensResponse, GenerateContentResponse } from '../../types/content';
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const STREAM_RESPONSE_CHUNKS_1: GenerateContentResponse[];
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const AGGREGATED_RESPONSE_STREAM_RESPONSE_CHUNKS_1: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const STREAM_RESPONSE_CHUNKS_2: GenerateContentResponse[];
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const AGGREGATED_RESPONSE_STREAM_RESPONSE_CHUNKS_2: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const STREAM_RESPONSE_CHUNKS_3: GenerateContentResponse[];
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const AGGREGATED_RESPONSE_STREAM_RESPONSE_CHUNKS_3: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const STREAM_RESPONSE_CHUNKS_4: GenerateContentResponse[];
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const AGGREGATED_RESPONSE_STREAM_RESPONSE_CHUNKS_4: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const STREAM_RESPONSE_CHUNKS_5: GenerateContentResponse[];
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const AGGREGATED_RESPONSE_STREAM_RESPONSE_CHUNKS_5: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const STREAM_RESPONSE_CHUNKS_6: GenerateContentResponse[];
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const AGGREGATED_RESPONSE_STREAM_RESPONSE_CHUNKS_6: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const UNARY_RESPONSE_1: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\functions\test\test_data.d.ts:export declare const UNARY_RESPONSE_MISSING_ROLE_INDEX: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:import { Content, GenerateContentResult, Part, RequestOptions, StartChatSessionRequest, StreamGenerateContentResult } from '../types/content';
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * @returns Promise of {@link GenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:    sendMessage(request: string | Array<string | Part>): Promise<GenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * {@link StreamGenerateContentResult.stream}. The aggregated response is
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * avaliable in {@link StreamGenerateContentResult.response} after all chunks
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * @returns Promise of {@link StreamGenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:    sendMessageStream(request: string | Array<string | Part>): Promise<StreamGenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * @returns Promise of {@link GenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:    sendMessage(request: string | Array<string | Part>): Promise<GenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * {@link StreamGenerateContentResult.stream}. The aggregated response is
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * avaliable in {@link StreamGenerateContentResult.response} after all chunks
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:     * @returns Promise of {@link StreamGenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.d.ts:    sendMessageStream(request: string | Array<string | Part>): Promise<StreamGenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * @returns Promise of {@link GenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentRequest = {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentResult = await (0, generate_content_1.generateContent)(this.location, this.resourcePath, this.fetchToken(), generateContentRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentResponse = await generateContentResult.response;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        if (generateContentResponse.candidates &&
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            generateContentResponse.candidates.length !== 0) {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            const contentFromModel = generateContentResponse.candidates[0].content;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        return Promise.resolve(generateContentResult);
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:    async appendHistory(streamGenerateContentResultPromise, newContent) {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const streamGenerateContentResult = await streamGenerateContentResultPromise;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const streamGenerateContentResponse = await streamGenerateContentResult.response;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        if (streamGenerateContentResponse.candidates &&
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            streamGenerateContentResponse.candidates.length !== 0) {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            const contentFromModel = streamGenerateContentResponse.candidates[0].content;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * {@link StreamGenerateContentResult.stream}. The aggregated response is
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * avaliable in {@link StreamGenerateContentResult.response} after all chunks
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * @returns Promise of {@link StreamGenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentrequest = {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const streamGenerateContentResultPromise = (0, generate_content_1.generateContentStream)(this.location, this.resourcePath, this.fetchToken(), generateContentrequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        this.sendStreamPromise = this.appendHistory(streamGenerateContentResultPromise, newContent).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            // Errors from remote endpoint will be catchable by user from streamGenerateContentResultPromise
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        return streamGenerateContentResultPromise;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * @returns Promise of {@link GenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentRequest = {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentResult = await (0, generate_content_1.generateContent)(this.location, this.resourcePath, this.fetchToken(), generateContentRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentResponse = await generateContentResult.response;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        if (generateContentResponse.candidates &&
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            generateContentResponse.candidates.length !== 0) {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            const contentFromAssistant = generateContentResponse.candidates[0].content;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        return Promise.resolve(generateContentResult);
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:    async appendHistory(streamGenerateContentResultPromise, newContent) {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const streamGenerateContentResult = await streamGenerateContentResultPromise;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const streamGenerateContentResponse = await streamGenerateContentResult.response;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        if (streamGenerateContentResponse.candidates &&
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            streamGenerateContentResponse.candidates.length !== 0) {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            const contentFromAssistant = streamGenerateContentResponse.candidates[0].content;
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * {@link StreamGenerateContentResult.stream}. The aggregated response is
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * avaliable in {@link StreamGenerateContentResult.response} after all chunks
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:     * @returns Promise of {@link StreamGenerateContentResult}.
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const generateContentRequest = {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        const streamGenerateContentResultPromise = (0, generate_content_1.generateContentStream)(this.location, this.resourcePath, this.fetchToken(), generateContentRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        this.sendStreamPromise = this.appendHistory(streamGenerateContentResultPromise, newContent).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:            // Errors from remote endpoint will be catchable by user from streamGenerateContentResultPromise
+node_modules\@google-cloud\vertexai\build\src\models\chat_session.js:        return streamGenerateContentResultPromise;
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:import { CachedContent, Content, CountTokensRequest, CountTokensResponse, GenerateContentRequest, GenerateContentResult, GetGenerativeModelParams, StartChatParams, StreamGenerateContentResult } from '../types/content';
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * const result = await generativeModel.generateContent(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @param request - A GenerateContentRequest object with the request contents.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @returns The GenerateContentResponse object with the response candidates.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:    generateContent(request: GenerateContentRequest | string): Promise<GenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * StreamGenerateContentResult.stream}. After all chunks of the response are
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * {@link StreamGenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * const streamingResult = await generativeModel.generateContentStream(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @param request - {@link GenerateContentRequest}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @returns Promise of {@link StreamGenerateContentResult}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:    generateContentStream(request: GenerateContentRequest | string): Promise<StreamGenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * The response will be returned in {@link GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * const result = await generativeModelPreview.generateContent(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @param request - A GenerateContentRequest object with the request contents.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @returns The GenerateContentResponse object with the response candidates.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:    generateContent(request: GenerateContentRequest | string): Promise<GenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * StreamGenerateContentResult.stream}. After all chunks of the response are
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * {@link StreamGenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * const streamingResult = await generativeModelPreview.generateContentStream(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @param request - {@link GenerateContentRequest}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:     * @returns Promise of {@link StreamGenerateContentResult}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.d.ts:    generateContentStream(request: GenerateContentRequest | string): Promise<StreamGenerateContentResult>;
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * const result = await generativeModel.generateContent(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @param request - A GenerateContentRequest object with the request contents.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @returns The GenerateContentResponse object with the response candidates.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:    async generateContent(request) {
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        request = formulateRequestToGenerateContentRequest(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        const formulatedRequest = formulateSystemInstructionIntoGenerateContentRequest(request, this.systemInstruction);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        return (0, generate_content_1.generateContent)(this.location, this.resourcePath, this.fetchToken(), formulatedRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * StreamGenerateContentResult.stream}. After all chunks of the response are
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * {@link StreamGenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * const streamingResult = await generativeModel.generateContentStream(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @param request - {@link GenerateContentRequest}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @returns Promise of {@link StreamGenerateContentResult}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:    async generateContentStream(request) {
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        request = formulateRequestToGenerateContentRequest(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        const formulatedRequest = formulateSystemInstructionIntoGenerateContentRequest(request, this.systemInstruction);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        return (0, generate_content_1.generateContentStream)(this.location, this.resourcePath, this.fetchToken(), formulatedRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * The response will be returned in {@link GenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * const result = await generativeModelPreview.generateContent(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @param request - A GenerateContentRequest object with the request contents.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @returns The GenerateContentResponse object with the response candidates.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:    async generateContent(request) {
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        request = formulateRequestToGenerateContentRequest(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:            ...formulateSystemInstructionIntoGenerateContentRequest(request, this.systemInstruction),
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        return (0, generate_content_1.generateContent)(this.location, this.resourcePath, this.fetchToken(), formulatedRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * StreamGenerateContentResult.stream}. After all chunks of the response are
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * {@link StreamGenerateContentResult.response}.
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * const streamingResult = await generativeModelPreview.generateContentStream(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @param request - {@link GenerateContentRequest}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:     * @returns Promise of {@link StreamGenerateContentResult}
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:    async generateContentStream(request) {
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        request = formulateRequestToGenerateContentRequest(request);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:            ...formulateSystemInstructionIntoGenerateContentRequest(request, this.systemInstruction),
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:        return (0, generate_content_1.generateContentStream)(this.location, this.resourcePath, this.fetchToken(), formulatedRequest, this.apiEndpoint, this.generationConfig, this.safetySettings, this.tools, this.toolConfig, this.requestOptions);
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:function formulateRequestToGenerateContentRequest(request) {
+node_modules\@google-cloud\vertexai\build\src\models\generative_models.js:function formulateSystemInstructionIntoGenerateContentRequest(methodRequest, classSystemInstruction) {
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:const GenerateContentFunctions = require("../../functions/generate_content");
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentCalledParams: [
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentReturns: [
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentCalledParams: [
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentReturns: [TEST_MODEL_RESPONSE_ROUND_1],
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentCalledParams: [
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentReturns: [TEST_MODEL_RESPONSE_ROUND_1],
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentSpy.and.returnValues(Promise.resolve(testCase.generateContentReturns[0]), Promise.resolve(testCase.generateContentReturns[1]));
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                expect(generateContentSpy).toHaveBeenCalledWith(...testCase.generateContentCalledParams[0]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                expect(round1Result).toEqual(testCase.generateContentReturns[0]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[0].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[0].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                    expect(generateContentSpy).toHaveBeenCalledWith(...testCase.generateContentCalledParams[1]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                    expect(round2Result).toEqual(testCase.generateContentReturns[1]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[0].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[1].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                generateContentSpy.and.returnValues(Promise.resolve(testCase.generateContentReturns[0]), Promise.resolve(testCase.generateContentReturns[1]));
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                expect(generateContentSpy).toHaveBeenCalledWith(...testCase.generateContentCalledParams[0]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                expect(round1Result).toEqual(testCase.generateContentReturns[0]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[0].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[0].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                    expect(generateContentSpy).toHaveBeenCalledWith(...testCase.generateContentCalledParams[1]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                    expect(round2Result).toEqual(testCase.generateContentReturns[1]);
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[0].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\chat_session_test.js:                        testCase.generateContentReturns[1].response.candidates[0].content,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:const GenerateContentFunctions = require("../../functions/generate_content");
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_CHAT_MESSSAGE_TEXT,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_USER_CONTENT_MESSAGE,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_CHAT_MESSSAGE_TEXT,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_CHAT_MESSSAGE_TEXT,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_CHAT_MESSSAGE_TEXT,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_CHAT_MESSSAGE_TEXT,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: {
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: TEST_CHAT_MESSSAGE_TEXT,
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                generateContentParams: {
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:            it(`${testCase.name} when call generateContent (isPreviewModel=${testCase.isPreviewModel})`, async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                await model.generateContent(testCase.generateContentParams);
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                expect(generateContentSpy).toHaveBeenCalledWith(...expectedParams);
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:            it(`${testCase.name} when call generateContentStream (isPreviewModel=${testCase.isPreviewModel})`, async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                await model.generateContentStream(testCase.generateContentParams);
+node_modules\@google-cloud\vertexai\build\src\models\test\generative_models_test.js:                expect(generateContentSpy).toHaveBeenCalledWith(...expectedParams);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:const GenerateContentFunctions = require("../../functions/generate_content");
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:describe('GenerativeModel generateContent', () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithShortName.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithLongName.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithFullName.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithRequestOptions.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, wrong role, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed a string', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed a GCS URI', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed safetySettings and generationConfig', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(reqWithEmptyConfigs);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(reqWithEmptyConfigs);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(reqWithEmptyConfigs);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('pass tools to remote endpoint when tools are passed via generateContent', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:describe('GenerativeModelPreview generateContent', () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithShortName.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithLongName.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithFullName.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithRequestOptions.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, wrong role, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed a string', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed a GCS URI', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed safetySettings and generationConfig', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(reqWithEmptyConfigs);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(reqWithEmptyConfigs);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(reqWithEmptyConfigs);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('in preview, pass tools to remote endpoint when tools are passed via generateContent', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:describe('GenerativeModel generateContentStream', () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed text content', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithShortName.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithLongName.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithFullName.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithRequestOptions.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, wrong role, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed a string', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed multi-part content with a GCS URI', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed multi-part content with base64 data', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContentStream(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('pass tools to remote endpoint when tools are passed via generateContent', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:describe('GenerativeModelPreview generateContentStream', () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed text content', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed text content', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithShortName.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithLongName.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithFullName.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithRequestOptions.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('set system instruction in generateContent, wrong role, should send system instruction to functions', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream');
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await modelWithSystemInstruction.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        expect(generateContentSpy.calls.allArgs()[0][3]).toEqual(expectedRequest);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed a string', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed multi-part content with a GCS URI', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('returns a GenerateContentResponse when passed multi-part content with base64 data', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        const resp = await model.generateContentStream(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContentStream(TEST_CHAT_MESSSAGE_TEXT);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('in preview, pass tools to remote endpoint when tools are passed via generateContent', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a GenerateContentResponse and appends to history', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.resolveTo({
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a GenerateContentResponse and appends to history when startChat is passed with no args', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a GenerateContentResponse when passed multi-part content', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a StreamGenerateContentResponse and appends to history', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a StreamGenerateContentResponse in streaming mode', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.resolveTo({
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a GenerateContentResponse and appends to history', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContent').and.resolveTo({
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a GenerateContentResponse and appends to history when startChat is passed with no args', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a GenerateContentResponse when passed multi-part content', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a StreamGenerateContentResponse and appends to history', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        it('returns a StreamGenerateContentResponse in streaming mode', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.callThrough();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][1]).toEqual(expectedResourcePath);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            const generateContentSpy = spyOn(GenerateContentFunctions, 'generateContentStream').and.resolveTo({
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:            expect(generateContentSpy.calls.allArgs()[0][9].timeout).toEqual(0);
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContentStream(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContent(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throw GoogleGenerativeAI error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await model.generateContentStream(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throw ClientError error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContent(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throw ClientError error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContentStream(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throw ClientError error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContent(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throw ClientError error', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContentStream(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throws GoogleGenerativeAIError', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContent(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throws GoogleGenerativeAIError', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContentStream(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContent should throws GoogleGenerativeAIError', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContent(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContent(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:    it('generateContentStream should throws GoogleGenerativeAIError', async () => {
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        await expectAsync(model.generateContentStream(req)).toBeRejected();
+node_modules\@google-cloud\vertexai\build\src\models\test\models_test.js:        // await model.generateContentStream(req).catch(e => {
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts: * Params used to call the generateContent method.
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:export declare interface GenerateContentRequest extends BaseModelParams {
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts: * Base params for initializing a model or calling GenerateContent.
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts: * Wrapper for respones from a generateContent request.
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:export declare interface GenerateContentResult {
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:     * All GenerateContentResponses received so far. {@link
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:     * GenerateContentResponse}
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:    response: GenerateContentResponse;
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts: * Wrapper for respones from a generateContentStream method.
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:export declare interface StreamGenerateContentResult {
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:    /** Promise of {@link GenerateContentResponse}. */
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:    response: Promise<GenerateContentResponse>;
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:     * Async iterable that provides one {@link GenerateContentResponse} at a
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:    stream: AsyncGenerator<GenerateContentResponse>;
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:export declare interface GenerateContentResponse {
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:    /** Array of {@link GenerateContentCandidate}. */
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:    candidates?: GenerateContentCandidate[];
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:export declare interface GenerateContentCandidate {
+node_modules\@google-cloud\vertexai\build\src\types\content.d.ts:     * GenerateContentResponse}.
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.d.ts:import { GenerateContentCandidate, FunctionCall } from './content';
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.d.ts: * {@link GenerateContentResponse} or properties of {@link GenerateContentResponse}
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.d.ts:export declare class GenerateContentResponseHandler {
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.d.ts:     * Extracts function calls from a {@link GenerateContentCandidate}.
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.d.ts:     * @returns the array of function calls in a {@link GenerateContentCandidate}.
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.d.ts:    static getFunctionCallsFromCandidate(candidate?: GenerateContentCandidate): FunctionCall[];
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.js:exports.GenerateContentResponseHandler = void 0;
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.js: * {@link GenerateContentResponse} or properties of {@link GenerateContentResponse}
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.js:class GenerateContentResponseHandler {
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.js:     * Extracts function calls from a {@link GenerateContentCandidate}.
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.js:     * @returns the array of function calls in a {@link GenerateContentCandidate}.
+node_modules\@google-cloud\vertexai\build\src\types\generate_content_response_handler.js:exports.GenerateContentResponseHandler = GenerateContentResponseHandler;
+node_modules\@google-cloud\vertexai\build\src\types\index.d.ts:export { GenerateContentResponseHandler } from './generate_content_response_handler';
+node_modules\@google-cloud\vertexai\build\src\types\index.js:exports.GenerateContentResponseHandler = void 0;
+node_modules\@google-cloud\vertexai\build\src\types\index.js:Object.defineProperty(exports, "GenerateContentResponseHandler", { enumerable: true, get: function () { return generate_content_response_handler_1.GenerateContentResponseHandler; } });
+node_modules\@google-cloud\vertexai\build\src\util\constants.d.ts:export declare const GENERATE_CONTENT_METHOD = "generateContent";
+node_modules\@google-cloud\vertexai\build\src\util\constants.d.ts:export declare const STREAMING_GENERATE_CONTENT_METHOD = "streamGenerateContent";
+node_modules\@google-cloud\vertexai\build\src\util\constants.js:exports.GENERATE_CONTENT_METHOD = 'generateContent';
+node_modules\@google-cloud\vertexai\build\src\util\constants.js:exports.STREAMING_GENERATE_CONTENT_METHOD = 'streamGenerateContent';
+services\gemini.js:  const result = await model.generateContent({
+services\gemini.js:  const result = await model.generateContent(prompt);
+services\gemini.js:  const result = await model.generateContent(prompt);
