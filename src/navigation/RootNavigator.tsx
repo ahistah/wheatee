@@ -11,7 +11,7 @@ import { ChatScreen } from '../screens/ChatScreen';
 import { HistoryScreen } from '../screens/HistoryScreen';
 import { HistoryDetailScreen } from '../screens/HistoryDetailScreen';
 import { HomeScreen } from '../screens/HomeScreen';
-import { MapScreen } from '../screens/MapScreen';
+import MapScreen from '../screens/MapScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { ResultsScreen } from '../screens/ResultsScreen';
 import { VoiceScreen } from '../screens/VoiceScreen';

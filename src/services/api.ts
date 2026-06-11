@@ -1,8 +1,11 @@
+console.log("APP_ENV =", process.env.EXPO_PUBLIC_APP_ENV);
+console.log("API_URL =", process.env.EXPO_PUBLIC_API_URL);
+
 import { AdviceResult, BackendStatus, DiagnosisResult, FarmProfile, HistoryRecord, Intent, User } from '../types';
 import { refreshFirebaseUser } from './auth';
 import { readJson, removeItem, writeJson } from '../utils/storage';
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'https://wheatee-api-1015273551155.us-central1.run.app';
 const IS_PRODUCTION_APP = process.env.EXPO_PUBLIC_APP_ENV === 'production';
 const REQUEST_TIMEOUT_MS = 20000;
 const HISTORY_KEY = 'wheaty.history';
@@ -39,20 +42,23 @@ async function request<T>(path: string, options: RequestInit): Promise<T | null>
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  const authUser = await getValidAuthUser();
+
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
-  if (authUser?.idToken) {
-    headers.Authorization = `Bearer ${authUser.idToken}`;
-  }
-  if (options.headers) {
-    new Headers(options.headers).forEach((value, key) => {
-      headers[key] = value;
-    });
+
+  try {
+    const authUser = await getValidAuthUser();
+
+    if (authUser?.idToken) {
+      headers.Authorization = `Bearer ${authUser.idToken}`;
+    }
+  } catch (err) {
+    console.log('Skipping auth:', err);
   }
 
   let response: Response;
+
   try {
     response = await fetch(`${API_URL}${path}`, {
       ...options,
@@ -64,10 +70,21 @@ async function request<T>(path: string, options: RequestInit): Promise<T | null>
   }
 
   if (!response.ok) {
-    throw new Error(`API ${path} failed with ${response.status}`);
+    const text = await response.text();
+
+    console.log('API ERROR');
+    console.log(path);
+    console.log(response.status);
+    console.log(text);
+
+    throw new Error(`API ${path} failed (${response.status}) ${text}`);
   }
 
-  return (await response.json()) as T;
+  try {
+    return (await response.json()) as T;
+  } catch {
+    return null;
+  }
 }
 
 async function getValidAuthUser() {
@@ -89,72 +106,35 @@ export function getBackendMode(): 'remote' | 'demo' {
   return API_URL ? 'remote' : 'demo';
 }
 
-export async function getBackendStatus(): Promise<BackendStatus> {
-  if (!API_URL) {
-    if (IS_PRODUCTION_APP) {
-      return {
-        mode: 'remote',
-        reachable: false,
-        message: 'Production app is missing EXPO_PUBLIC_API_URL.',
-      };
-    }
-    return {
-      mode: 'demo',
-      reachable: true,
-      message: 'Demo mode: local agronomist responses and farm memory are active.',
-    };
-  }
+export async function getBackendStatus() {
+  console.log("API_URL =", API_URL);
 
   try {
-    const health = await request<{
-      ok: boolean;
-      ready: boolean;
-      service: string;
-      mode: 'ai' | 'fallback';
-      mongo: boolean;
-      supabase: boolean;
-      firebase: boolean;
-      storage: boolean;
-      speech: boolean;
-      knowledgeBase: number;
-      missingConfig: string[];
-    }>('/health', { method: 'GET' });
-    const ready = health?.ready ?? false;
-    const missingConfig = health?.missingConfig ?? [];
+    const response = await fetch(
+      "https://wheatee-api-1015273551155.us-central1.run.app/health"
+    );
+
+    const json = await response.json();
+
+    console.log("Health response:", json);
+
     return {
-      mode: 'remote',
-      baseUrl: API_URL,
-      reachable: Boolean(health?.ok),
-      ready,
-      service: health?.service,
-      ai: health?.mode === 'ai',
-      mongo: health?.mongo,
-      supabase: health?.supabase,
-      firebase: health?.firebase,
-      storage: health?.storage,
-      speech: health?.speech,
-      knowledgeBase: health?.knowledgeBase,
-      missingConfig,
-      message: ready
-        ? 'Connected to production-ready Wheaty AI backend.'
-        : missingConfig.length
-          ? `Backend is reachable but missing: ${missingConfig.join(', ')}.`
-          : health?.mode === 'ai'
-            ? 'Connected to Wheaty AI backend.'
-            : 'Connected to Wheaty backend in fallback mode.',
+      mode: "remote",
+      baseUrl: "https://wheatee-api-1015273551155.us-central1.run.app",
+      reachable: true,
+      message: "Backend connected",
     };
-  } catch {
+  } catch (error) {
+    console.log("FETCH FAILED:", error);
+
     return {
-      mode: 'remote',
-      baseUrl: API_URL,
+      mode: "remote",
+      baseUrl: "https://wheatee-api-1015273551155.us-central1.run.app",
       reachable: false,
-      message: IS_PRODUCTION_APP
-        ? 'Backend is configured but not reachable. Check the deployed API before release.'
-        : 'Backend is configured but not reachable. Local history still works.',
+      message: String(error),
     };
   }
 }
-
 function detectIntent(text: string, hasImage = false): Intent {
   const lower = text.toLowerCase();
   if (/history|previous|last season|record|before|what happened|show previous|past/.test(lower)) return 'MEMORY_QUERY';
@@ -315,18 +295,45 @@ export async function saveRecord(record: HistoryRecord): Promise<HistoryRecord> 
 }
 
 export async function getHistory(userId: string, limit = 20): Promise<HistoryRecord[]> {
-  let remote: HistoryRecord[] | null = null;
+  let remote: any = null;
   try {
-    remote = await request<HistoryRecord[]>(`/history?userId=${encodeURIComponent(userId)}&limit=${limit}`, {
+    remote = await request<any>(`/history?userId=${encodeURIComponent(userId)}&limit=${limit}`, {
       method: 'GET',
     });
   } catch (error) {
-    if (IS_PRODUCTION_APP) {
-      throw error;
-    }
+    if (IS_PRODUCTION_APP) throw error;
     remote = null;
   }
-  if (remote) return remote;
+
+  if (remote) {
+    // Backend returns { diagnoses, conversations } — merge into flat array
+    const diagnoses = (remote.diagnoses || []).map((d: any) => ({
+      id: d._id || `diagnosis-${d.timestamp}`,
+      userId: d.userId,
+      type: 'diagnosis',
+      input: d.input || 'Crop diagnosis',
+      response: `${d.disease} (${Math.round((d.confidence || 0) * 100)}% confidence)`,
+      intent: 'DISEASE' as Intent,
+      timestamp: d.timestamp || new Date().toISOString(),
+      confidence: d.confidence,
+      actionItems: d.treatment ? [d.treatment] : [],
+      backendMode: 'remote' as const,
+    }));
+    const conversations = (remote.conversations || []).map((c: any) => ({
+      id: c._id || `conv-${c.timestamp}`,
+      userId: c.userId,
+      type: 'conversation',
+      input: c.input || '',
+      response: c.response || '',
+      intent: (c.intent || 'GENERAL_AGRICULTURE') as Intent,
+      timestamp: c.timestamp || new Date().toISOString(),
+      actionItems: [],
+      backendMode: 'remote' as const,
+    }));
+    return [...diagnoses, ...conversations].sort(
+      (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    ).slice(0, limit);
+  }
 
   const local = await readJson<HistoryRecord[]>(HISTORY_KEY, []);
   return local.filter((item) => item.userId === userId).slice(0, limit);
